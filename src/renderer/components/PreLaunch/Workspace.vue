@@ -1,15 +1,21 @@
 <template>
-<div>
- WORKSPACE
-</div>
+    <div>
+    <div>
+        <label for="workspacepath" class="workspacelabel">Workspace Location</label>
+        <input type="text" name="workspacepath" class="textbox"/>
+        <button class="browse">Browse...</button>
+    </div>
+    <button class="step1_button">Next</button>
+    </div>
 </template>
-
 <script>
+import WorkspaceMount from './WorkspaceMount.js'
 export default {
-  name: 'workspace'
+  name: 'workspace',
+  mounted: () => {
+    WorkspaceMount.updated()
+  }
 }
 </script>
-
 <style scoped>
-
 </style>
