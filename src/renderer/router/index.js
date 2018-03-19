@@ -4,6 +4,8 @@ import MainPage from '@/components/MainPage'
 import DefaultContent from '@/components/MainPage/DefaultContent'
 import Sidebar from '@/components/MainPage/Sidebar'
 import Workspace from '@/components/PreLaunch/Workspace'
+import DownloadRepo from '@/components/PreLaunch/DownloadRepo'
+
 const storage = require('electron-json-storage')
 const path = require('path')
 const fs = require('fs')
@@ -29,6 +31,14 @@ const routes = new Router({
         name: 'first-run',
         components: {
           default: Workspace,
+          sidebar: Sidebar
+        }
+      },
+      {
+        path: '/download-repo',
+        name: 'download-repo',
+        components: {
+          default: DownloadRepo,
           sidebar: Sidebar
         }
       }

@@ -5,7 +5,7 @@
         <input type="text" name="workspacepath" class="textbox"/>
         <button class="browse">Browse...</button>
     </div>
-    <button class="step1_button">Next</button>
+    <router-link :to="{ name: 'download-repo' }" tag="button">Next</router-link>
     </div>
 </template>
 <script>

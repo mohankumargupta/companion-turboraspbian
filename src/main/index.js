@@ -1,6 +1,6 @@
 'use strict'
 
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow, ipcMain } from 'electron'
 
 /**
  * Set `__static` path to static files in production
@@ -31,6 +31,33 @@ function createWindow () {
     mainWindow = null
   })
 }
+
+function downloadRepo (arg) {
+  const axios = require('axios')
+  const path = require('path')
+  const fs = require('fs')
+  axios.request({
+    responseType: 'arraybuffer',
+    url: 'https://github.com/mohankumargupta/raspberrypi-ansible/archive/master.zip',
+    method: 'get',
+    headers: {
+      'Content-Type': 'application/zip'
+    }
+  }).then((result) => {
+    const outputFilename = arg + path.sep + 'master.zip'
+    fs.writeFileSync(outputFilename, result.data)
+    const unzip = require('node-unzip-2')
+    console.log(arg)
+    console.log(outputFilename)
+    fs.createReadStream(outputFilename).pipe(unzip.Extract({ path: arg }))
+    console.log('unzipping done')
+  })
+}
+
+ipcMain.on('downloadrepo', (event, arg) => {
+  console.log('hit')
+  downloadRepo(arg)
+})
 
 app.on('ready', createWindow)
 

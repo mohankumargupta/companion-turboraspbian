@@ -1,5 +1,6 @@
 const state = {
-  main: 0
+  main: 0,
+  path: ''
 }
 
 const mutations = {
@@ -8,6 +9,9 @@ const mutations = {
   },
   INCREMENT_MAIN_COUNTER (state) {
     state.main++
+  },
+  updatePath (state, path) {
+    state.path = path
   }
 }
 
@@ -18,8 +22,13 @@ const actions = {
   }
 }
 
+const getters = {
+  getPath: state => state.path
+}
+
 export default {
   state,
+  getters,
   mutations,
   actions
 }

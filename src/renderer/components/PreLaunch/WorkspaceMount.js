@@ -1,3 +1,5 @@
+import store from '../../store'
+
 export default {
   updated: () => {
     let path
@@ -9,6 +11,7 @@ export default {
         if (path !== undefined) {
           path = path[0]
           storage.set('workspacePath', {path: path})
+          store.commit('updatePath', path)
           document.querySelector('[name=workspacepath]').value = path
         }
       })
