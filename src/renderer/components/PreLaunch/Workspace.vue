@@ -2,7 +2,7 @@
     <div>
     <div>
         <label for="workspacepath" class="workspacelabel">Workspace Location</label>
-        <input type="text" name="workspacepath" class="textbox"/>
+        <input type="text" name="workspacepath" class="textbox" @input="updateWorkspacePath"/>
         <button class="browse">Browse...</button>
     </div>
     <router-link :to="{ name: 'download-repo' }" tag="button">Next</router-link>
@@ -13,7 +13,12 @@ import WorkspaceMount from './WorkspaceMount.js'
 export default {
   name: 'workspace',
   mounted: () => {
-    WorkspaceMount.updated()
+    WorkspaceMount.mounted()
+  },
+  methods: {
+    updateWorkspacePath: () => {
+      WorkspaceMount.updateWorkspacePath()
+    }
   }
 }
 </script>

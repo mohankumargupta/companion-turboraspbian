@@ -1,7 +1,7 @@
 <template>
 <div>
     <h1>Need to Download from github</h1>
-    <button class="proceedMainInterface">Proceed</button>
+    <button class="proceedMainInterface" @click="downloadAndUnzip">Proceed</button>
     <div class="downloadprogress">
         
     </div>
@@ -12,8 +12,10 @@
 import DownloadRepoMount from './DownloadRepoMount.js'
 export default {
   name: 'download-repo',
-  mounted: () => {
-    DownloadRepoMount.mounted()
+  methods: {
+    downloadAndUnzip: () => {
+      DownloadRepoMount.downloadAndUnzip()
+    }
   }
 }
 </script>
