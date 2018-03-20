@@ -1,7 +1,7 @@
 <template>
 <section>
 <main>
-    <router-link class="cell" :to="{name: 'default'}" tag="div">
+    <router-link class="cell" :to="{name: 'ssh'}" tag="div">
         <div class="titleHeader titleHeader1">
             Step 1
         </div>

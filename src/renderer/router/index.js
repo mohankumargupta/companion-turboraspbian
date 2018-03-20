@@ -6,6 +6,7 @@ import Sidebar from '@/components/MainPage/Sidebar'
 import Workspace from '@/components/PreLaunch/Workspace'
 import DownloadRepo from '@/components/PreLaunch/DownloadRepo'
 import Dashboard from '@/components/MainPage/Dashboard'
+import SSH from '@/components/MainPage/SSH'
 
 const storage = require('electron-json-storage')
 const path = require('path')
@@ -48,6 +49,14 @@ const routes = new Router({
         name: 'dashboard',
         components: {
           default: Dashboard,
+          sidebar: Sidebar
+        }
+      },
+      {
+        path: '/ssh',
+        name: 'ssh',
+        components: {
+          default: SSH,
           sidebar: Sidebar
         }
       }
