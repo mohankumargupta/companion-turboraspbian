@@ -1,7 +1,7 @@
 <template>
-<div class="contentarea">
- CONTENT AREA
-</div>
+<div>
+    <router-link :to="{name: 'dashboard'}">Back to Dashboard</router-link>
+</div> 
 </template>
 
 <script>
