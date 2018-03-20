@@ -3,6 +3,8 @@ import store from '../../store'
 export default {
   updateWorkspacePath: () => {
     const newPath = document.querySelector('[name=workspacepath]').value
+    const storage = require('electron-json-storage')
+    storage.set('workspacePath', {path: newPath})
     store.commit('updatePath', newPath)
   },
   mounted: () => {

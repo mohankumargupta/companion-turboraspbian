@@ -5,6 +5,7 @@ import DefaultContent from '@/components/MainPage/DefaultContent'
 import Sidebar from '@/components/MainPage/Sidebar'
 import Workspace from '@/components/PreLaunch/Workspace'
 import DownloadRepo from '@/components/PreLaunch/DownloadRepo'
+import Dashboard from '@/components/MainPage/Dashboard'
 
 const storage = require('electron-json-storage')
 const path = require('path')
@@ -41,6 +42,14 @@ const routes = new Router({
           default: DownloadRepo,
           sidebar: Sidebar
         }
+      },
+      {
+        path: '/dashboard',
+        name: 'dashboard',
+        components: {
+          default: Dashboard,
+          sidebar: Sidebar
+        }
       }
       ]
     }
@@ -52,7 +61,7 @@ routes.beforeEach((to, from, next) => {
     if (preLaunch()) {
       next({ name: 'first-run' })
     } else {
-      next({ name: 'default' })
+      next({ name: 'dashboard' })
     }
   } else {
     next()
