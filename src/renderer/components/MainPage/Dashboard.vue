@@ -78,8 +78,12 @@
 </template>
 
 <script>
+import DashboardHelper from './DashboardHelper.js'
 export default {
-  name: 'dashboard'
+  name: 'dashboard',
+  mounted: function () {
+    DashboardHelper.mounted(this.$store)
+  }
 }
 </script>
 

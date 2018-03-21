@@ -6,7 +6,17 @@
              Install software via apt-get
             </h4>
             <div class="cardContents">
-            
+                <div>
+                    <button>Add Package</button>
+                </div>
+                <div>
+                <h5>Apt Package Name</h5>
+                <div v-for="aptPackage in packages">
+                    <div>
+                    <input v-model="aptPackage.value"/>
+                    </div>
+                </div>
+                </div>
             </div>
             <div class="save">
               <button>Change</button>
@@ -19,8 +29,13 @@
 import ImportSoftwareHelper from './InstallSoftwareHelper.js'
 export default {
   name: 'installsoftware',
+  data: () => {
+    return {
+      packages: []
+    }
+  },
   mounted: function () {
-    ImportSoftwareHelper.mounted(this.$store)
+    ImportSoftwareHelper.mounted(this.$store.state.Counter.userconfig, this.packages)
   }
 }
 </script>

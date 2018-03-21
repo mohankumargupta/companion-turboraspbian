@@ -1,6 +1,7 @@
 const state = {
   main: 0,
-  path: ''
+  path: '',
+  userconfig: {}
 }
 
 const mutations = {
@@ -12,6 +13,9 @@ const mutations = {
   },
   updatePath (state, path) {
     state.path = path
+  },
+  updateUserConfig (state, config) {
+    state.userconfig = config
   }
 }
 
