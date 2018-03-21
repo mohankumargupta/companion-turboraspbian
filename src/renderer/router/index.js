@@ -7,6 +7,7 @@ import Workspace from '@/components/PreLaunch/Workspace'
 import DownloadRepo from '@/components/PreLaunch/DownloadRepo'
 import Dashboard from '@/components/MainPage/Dashboard'
 import SSH from '@/components/MainPage/SSH'
+import InstallSoftware from '@/components/MainPage/InstallSoftware'
 
 const storage = require('electron-json-storage')
 const path = require('path')
@@ -59,6 +60,14 @@ const routes = new Router({
           default: SSH,
           sidebar: Sidebar
         }
+      },
+      {
+        path: '/installsoftware',
+        name: 'installsoftware',
+        components: {
+          default: InstallSoftware,
+          sidebar: Sidebar
+        }
       }
       ]
     }
@@ -75,6 +84,9 @@ routes.beforeEach((to, from, next) => {
   } else {
     next()
   }
+  setTimeout(() => {
+    window.scrollTo(0, 0)
+  }, 100)
 })
 
 function preLaunch () {

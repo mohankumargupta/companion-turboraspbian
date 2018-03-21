@@ -9,12 +9,12 @@
           SSH
         </div>
     </router-link>
-    <router-link class="cell" :to="{name: 'default'}" tag="div">
+    <router-link class="cell" :to="{name: 'installsoftware'}" tag="div">
         <div class="titleHeader titleHeader2">
             Step 2
         </div>
         <div class="cellBody">
-          Install Software 
+          Install Software
         </div>
     </router-link>
     <router-link class="cell" :to="{name: 'default'}" tag="div">
@@ -98,11 +98,12 @@ main {
     margin-right:30px;
     margin-bottom: 30px;
     border: 1px solid rgb(232,232,232);
-    cursor: crosshair;
 }
 
 .cell :hover {
     background-color: rgb(241,241,241);
+    text-decoration: underline;
+    color:blue;
 }
 
 .titleHeader {
@@ -149,4 +150,11 @@ main {
     padding-top: 30px;
     padding-bottom: 30px;
 }
+
+
+
+
+
+
+
 </style>
