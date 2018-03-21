@@ -25,7 +25,7 @@
           Raspbian
         </div>
     </router-link>
-    <router-link class="cell" :to="{name: 'default'}" tag="div">
+    <router-link class="cell" :to="{name: 'python'}" tag="div">
         <div class="titleHeader titleHeader4">
             Step 4
         </div>
