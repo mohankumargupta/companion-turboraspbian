@@ -6,10 +6,7 @@
 
 <script>
 export default {
-  name: 'default-content',
-  beforeCreate: () => {
-    console.log('beforeCreate')
-  }
+  name: 'default-content'
 }
 </script>
 

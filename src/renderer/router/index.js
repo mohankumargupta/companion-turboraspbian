@@ -8,6 +8,7 @@ import DownloadRepo from '@/components/PreLaunch/DownloadRepo'
 import Dashboard from '@/components/MainPage/Dashboard'
 import SSH from '@/components/MainPage/SSH'
 import InstallSoftware from '@/components/MainPage/InstallSoftware'
+import Raspbian from '@/components/MainPage/Raspbian'
 
 const storage = require('electron-json-storage')
 const path = require('path')
@@ -66,6 +67,14 @@ const routes = new Router({
         name: 'installsoftware',
         components: {
           default: InstallSoftware,
+          sidebar: Sidebar
+        }
+      },
+      {
+        path: '/raspbian',
+        name: 'raspbian',
+        components: {
+          default: Raspbian,
           sidebar: Sidebar
         }
       }

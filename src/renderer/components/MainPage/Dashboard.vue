@@ -17,7 +17,7 @@
           Install Software
         </div>
     </router-link>
-    <router-link class="cell" :to="{name: 'default'}" tag="div">
+    <router-link class="cell" :to="{name: 'raspbian'}" tag="div">
         <div class="titleHeader titleHeader3">
             Step 3
         </div>
