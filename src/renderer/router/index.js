@@ -11,6 +11,7 @@ import InstallSoftware from '@/components/MainPage/InstallSoftware'
 import Raspbian from '@/components/MainPage/Raspbian'
 import Python from '@/components/MainPage/Python'
 import NodeRed from '@/components/MainPage/NodeRed'
+import Docker from '@/components/MainPage/Docker'
 
 const storage = require('electron-json-storage')
 const path = require('path')
@@ -93,6 +94,14 @@ const routes = new Router({
         name: 'nodered',
         components: {
           default: NodeRed,
+          sidebar: Sidebar
+        }
+      },
+      {
+        path: '/docker',
+        name: 'docker',
+        components: {
+          default: Docker,
           sidebar: Sidebar
         }
       }

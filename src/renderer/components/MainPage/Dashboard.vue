@@ -49,7 +49,7 @@
           Network Storage
         </div>
     </router-link>
-    <router-link class="cell" :to="{name: 'default'}" tag="div">
+    <router-link class="cell" :to="{name: 'docker'}" tag="div">
         <div class="titleHeader titleHeader7">
             Step 7
         </div>
