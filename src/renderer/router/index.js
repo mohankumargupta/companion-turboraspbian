@@ -10,6 +10,7 @@ import SSH from '@/components/MainPage/SSH'
 import InstallSoftware from '@/components/MainPage/InstallSoftware'
 import Raspbian from '@/components/MainPage/Raspbian'
 import Python from '@/components/MainPage/Python'
+import NodeRed from '@/components/MainPage/NodeRed'
 
 const storage = require('electron-json-storage')
 const path = require('path')
@@ -84,6 +85,14 @@ const routes = new Router({
         name: 'python',
         components: {
           default: Python,
+          sidebar: Sidebar
+        }
+      },
+      {
+        path: '/nodered',
+        name: 'nodered',
+        components: {
+          default: NodeRed,
           sidebar: Sidebar
         }
       }

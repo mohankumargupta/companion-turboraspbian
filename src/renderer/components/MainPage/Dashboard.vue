@@ -33,12 +33,12 @@
           Python
         </div>
     </router-link>
-    <router-link class="cell" :to="{name: 'default'}" tag="div">
+    <router-link class="cell" :to="{name: 'nodered'}" tag="div">
         <div class="titleHeader titleHeader5">
             Step 5
         </div>
         <div class="cellBody">
-          Node-Red
+          NodeRed
         </div>
     </router-link>
     <router-link class="cell" :to="{name: 'default'}" tag="div">
