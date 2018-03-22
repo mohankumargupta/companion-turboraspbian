@@ -5,7 +5,7 @@
     <div class="downloadprogress">
         Done! Download Successful
     </div>
-    <router-link class="next" :to="{name: 'dashboard'}" tag="button">Next</router-link>
+    <router-link class="next" :to="{name: 'check-shell'}" tag="button">Next</router-link>
 </div>
 </template>
 

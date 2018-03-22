@@ -12,5 +12,7 @@
 
 <style>
   /* App-wide CSS */
-
+.contentWrapper {
+    padding: 5vw;
+}
 </style>

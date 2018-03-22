@@ -24,12 +24,12 @@ body {
 
 .wrapper {
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 0.6fr 3fr;
     height: 100vw;
 }
 
 .sidebar {
-    background-color: rgb(40,44,48);
+    background-color: #34495e;
 }
 
 .maincontentwrapper {
