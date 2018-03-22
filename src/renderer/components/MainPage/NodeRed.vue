@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div class="save">
-              <button>Change</button>
+              <button @click="approve">Approve Settings</button>
             </div>
     </div>
 </div> 
@@ -27,11 +27,18 @@
 
 <script>
 import NodeRedHelper from './NodeRedHelper.js'
+import CommonHelper from './CommonHelper.js'
+
 export default {
   name: 'nodered',
   data: () => {
     return {
       packages: []
+    }
+  },
+  methods: {
+    approve: function () {
+      CommonHelper.approve(this.$store, this.$router, 'nodered')
     }
   },
   mounted: function () {

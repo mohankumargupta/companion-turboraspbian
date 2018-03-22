@@ -54,7 +54,7 @@
             </div>
             </div>
             <div class="save">
-              <button>Change</button>
+              <button @click="approve">Approve Settings</button>
             </div>
     </div>
 </div> 
@@ -62,6 +62,8 @@
 
 <script>
 import RaspbianHelper from './RaspbianHelper.js'
+import CommonHelper from './CommonHelper.js'
+
 export default {
   name: 'installsoftware',
   data: () => {
@@ -71,6 +73,11 @@ export default {
       wifiPassword: '',
       bluetooth: false,
       interfaces: []
+    }
+  },
+  methods: {
+    approve: function () {
+      CommonHelper.approve(this.$store, this.$router, 'raspbian')
     }
   },
   mounted: function () {

@@ -43,7 +43,7 @@
                 </div>
             </div>
             <div class="save">
-              <button>Change</button>
+              <button @click="approve">Approve Settings</button>
             </div>
     </div>
 </div> 
@@ -51,6 +51,8 @@
 
 <script>
 import PythonHelper from './PythonHelper.js'
+import CommonHelper from './CommonHelper.js'
+
 export default {
   name: 'installsoftware',
   data: () => {
@@ -59,6 +61,11 @@ export default {
       python3Apt: [],
       python2Pip: [],
       python3Pip: []
+    }
+  },
+  methods: {
+    approve: function () {
+      CommonHelper.approve(this.$store, this.$router, 'python')
     }
   },
   mounted: function () {

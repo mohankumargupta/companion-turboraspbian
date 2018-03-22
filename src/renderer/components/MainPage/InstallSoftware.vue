@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div class="save">
-              <button @click="approve">Change</button>
+              <button @click="approve">Approve Settings</button>
             </div>
     </div>
 </div> 
@@ -27,6 +27,8 @@
 
 <script>
 import ImportSoftwareHelper from './InstallSoftwareHelper.js'
+import CommonHelper from './CommonHelper.js'
+
 export default {
   name: 'installsoftware',
   data: () => {
@@ -36,9 +38,7 @@ export default {
   },
   methods: {
     approve: function () {
-      this.$store.commit('updateSections', {
-        installsoftware: true
-      })
+      CommonHelper.approve(this.$store, this.$router, 'installsoftware')
     }
   },
   mounted: function () {

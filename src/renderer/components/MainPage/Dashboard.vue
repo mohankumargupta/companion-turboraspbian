@@ -26,7 +26,8 @@
             Step 3
         </div>
         <div class="cellBody">
-                  <i class="fas fa-exclamation-triangle"></i>
+         <i v-if="raspbian" class="fas fa-thumbs-up"></i>      
+          <i v-else class="fas fa-exclamation-triangle"></i>
           <div>Raspbian</div>
         </div>
     </router-link>
@@ -35,7 +36,8 @@
             Step 4
         </div>
         <div class="cellBody">
-                  <i class="fas fa-exclamation-triangle"></i>
+         <i v-if="python" class="fas fa-thumbs-up"></i>      
+          <i v-else class="fas fa-exclamation-triangle"></i>
           <div>Python</div>
         </div>
     </router-link>
@@ -44,7 +46,8 @@
             Step 5
         </div>
         <div class="cellBody">
-                          <i class="fas fa-exclamation-triangle"></i>
+         <i v-if="nodered" class="fas fa-thumbs-up"></i>      
+          <i v-else class="fas fa-exclamation-triangle"></i>
           <div>NodeRed</div>
         </div>
     </router-link>
@@ -53,7 +56,8 @@
             Step 6
         </div>
         <div class="cellBody">
-                  <i class="fas fa-exclamation-triangle"></i>
+         <i v-if="samba" class="fas fa-thumbs-up"></i>      
+          <i v-else class="fas fa-exclamation-triangle"></i>
           <div>Network Storage</div>
         </div>
     </router-link>
@@ -62,7 +66,8 @@
             Step 7
         </div>
         <div class="cellBody">
-                  <i class="fas fa-exclamation-triangle"></i>
+         <i v-if="docker" class="fas fa-thumbs-up"></i>      
+          <i v-else class="fas fa-exclamation-triangle"></i>
           <div>Docker</div>
         </div>
     </router-link>
@@ -71,7 +76,8 @@
             Step 8
         </div>
         <div class="cellBody">
-                  <i class="fas fa-exclamation-triangle"></i>
+         <i v-if="ngrok" class="fas fa-thumbs-up"></i>      
+          <i v-else class="fas fa-exclamation-triangle"></i>
           <div>Ngrok</div>
         </div>
     </router-link>
@@ -80,7 +86,8 @@
             Step 9
         </div>
         <div class="cellBody">
-                  <i class="fas fa-exclamation-triangle"></i>
+         <i v-if="miscellaneous" class="fas fa-thumbs-up"></i>      
+          <i v-else class="fas fa-exclamation-triangle"></i>
           <div>Miscellaneous</div>
         </div>
     </router-link>
@@ -95,7 +102,14 @@ export default {
   data: () => {
     return {
       ssh: false,
-      installsoftware: false
+      installsoftware: false,
+      raspbian: false,
+      python: false,
+      nodered: false,
+      samba: false,
+      docker: false,
+      ngrok: false,
+      miscellaneous: false
     }
   },
   mounted: function () {

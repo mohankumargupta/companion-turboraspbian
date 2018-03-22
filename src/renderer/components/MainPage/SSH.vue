@@ -27,6 +27,8 @@
 </template>
 
 <script>
+import CommonHelper from './CommonHelper.js'
+
 export default {
   name: 'ssh',
   data: () => {
@@ -38,9 +40,7 @@ export default {
   },
   methods: {
     approve: function () {
-      this.$store.commit('updateSections', {
-        ssh: true
-      })
+      CommonHelper.approve(this.$store, this.$router, 'ssh')
     }
   }
 }

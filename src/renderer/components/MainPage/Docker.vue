@@ -26,7 +26,7 @@
             </div>
             </div>
             <div class="save">
-              <button>Change</button>
+              <button @click="approve">Approve Settings</button>
             </div>
     </div>
 </div> 
@@ -34,12 +34,19 @@
 
 <script>
 import DockerHelper from './DockerHelper.js'
+import CommonHelper from './CommonHelper.js'
+
 export default {
   name: 'docker',
   data: () => {
     return {
       enabled: true,
       containers: []
+    }
+  },
+  methods: {
+    approve: function () {
+      CommonHelper.approve(this.$store, this.$router, 'docker')
     }
   },
   mounted: function () {
