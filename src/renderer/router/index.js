@@ -15,6 +15,7 @@ import NodeRed from '@/components/MainPage/NodeRed'
 import Docker from '@/components/MainPage/Docker'
 import Welcome from '@/components/PreLaunch/Welcome'
 import CheckShell from '@/components/PreLaunch/CheckShell'
+import Summary from '@/components/MainPage/Summary'
 
 const storage = require('electron-json-storage')
 const path = require('path')
@@ -122,6 +123,14 @@ const routes = new Router({
           name: 'default',
           components: {
             default: DefaultContent,
+            sidebar: Sidebar
+          }
+        },
+        {
+          path: '/summary',
+          name: 'summaryscreen',
+          components: {
+            default: Summary,
             sidebar: Sidebar
           }
         }
