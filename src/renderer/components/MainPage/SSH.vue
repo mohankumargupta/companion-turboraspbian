@@ -8,19 +8,19 @@
             <div class="cardContents">
             <div class="inputWrapper">
             <label for="ipaddress">Pi IP Address</label>
-            <input name="ipaddress" title="Pi IP Address" type="text" placeholder="Pi IP Address"/>
+            <input v-model="ipaddress" name="ipaddress" title="Pi IP Address" type="text" placeholder="Pi IP Address"/>
             </div>
             <div class="inputWrapper">
             <label for="username">Username</label>
-            <input name="username" title="username" type="text" placeholder="username"/>
+            <input v-model="username" name="username" title="username" type="text" placeholder="username"/>
             </div>
             <div class="inputWrapper">
             <label for="passwd">Password</label>
-            <input name="passwd" title="password" type="text" placeholder="password"/>
+            <input v-model="password" name="passwd" title="password" type="text" placeholder="password"/>
             </div>
             </div>
             <div class="save">
-              <button>Change</button>
+              <button @click="approve">Approve Settings</button>
             </div>
     </div>
 </div> 
@@ -28,7 +28,21 @@
 
 <script>
 export default {
-  name: 'ssh'
+  name: 'ssh',
+  data: () => {
+    return {
+      ipaddress: '',
+      username: 'pi',
+      password: 'raspberry'
+    }
+  },
+  methods: {
+    approve: function () {
+      this.$store.commit('updateSections', {
+        ssh: true
+      })
+    }
+  }
 }
 </script>
 

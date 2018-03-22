@@ -10,8 +10,13 @@ import ToggleButton from 'vue-js-toggle-button'
 import fontawesome from '@fortawesome/fontawesome'
 import faTh from '@fortawesome/fontawesome-free-solid/faTh'
 import faHome from '@fortawesome/fontawesome-free-solid/faHome'
+import faExclamationTriangle from '@fortawesome/fontawesome-free-solid/faExclamationTriangle'
+import faThumbsUp from '@fortawesome/fontawesome-free-solid/faThumbsUp'
+
 fontawesome.library.add(faTh)
 fontawesome.library.add(faHome)
+fontawesome.library.add(faExclamationTriangle)
+fontawesome.library.add(faThumbsUp)
 
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 Vue.http = Vue.prototype.$http = axios

@@ -6,7 +6,9 @@
             Step 1
         </div>
         <div class="cellBody">
-          SSH
+          <i v-if="ssh" class="fas fa-thumbs-up"></i>      
+          <i v-else class="fas fa-exclamation-triangle"></i>
+          <div>SSH</div>
         </div>
     </router-link>
     <router-link class="cell" :to="{name: 'installsoftware'}" tag="div">
@@ -14,7 +16,9 @@
             Step 2
         </div>
         <div class="cellBody">
-          Install Software
+          <i v-if="installsoftware" class="fas fa-thumbs-up"></i>      
+          <i v-else class="fas fa-exclamation-triangle"></i>
+          <div>Install Software</div>
         </div>
     </router-link>
     <router-link class="cell" :to="{name: 'raspbian'}" tag="div">
@@ -22,7 +26,8 @@
             Step 3
         </div>
         <div class="cellBody">
-          Raspbian
+                  <i class="fas fa-exclamation-triangle"></i>
+          <div>Raspbian</div>
         </div>
     </router-link>
     <router-link class="cell" :to="{name: 'python'}" tag="div">
@@ -30,7 +35,8 @@
             Step 4
         </div>
         <div class="cellBody">
-          Python
+                  <i class="fas fa-exclamation-triangle"></i>
+          <div>Python</div>
         </div>
     </router-link>
     <router-link class="cell" :to="{name: 'nodered'}" tag="div">
@@ -38,7 +44,8 @@
             Step 5
         </div>
         <div class="cellBody">
-          NodeRed
+                          <i class="fas fa-exclamation-triangle"></i>
+          <div>NodeRed</div>
         </div>
     </router-link>
     <router-link class="cell" :to="{name: 'default'}" tag="div">
@@ -46,7 +53,8 @@
             Step 6
         </div>
         <div class="cellBody">
-          Network Storage
+                  <i class="fas fa-exclamation-triangle"></i>
+          <div>Network Storage</div>
         </div>
     </router-link>
     <router-link class="cell" :to="{name: 'docker'}" tag="div">
@@ -54,7 +62,8 @@
             Step 7
         </div>
         <div class="cellBody">
-          Docker
+                  <i class="fas fa-exclamation-triangle"></i>
+          <div>Docker</div>
         </div>
     </router-link>
     <router-link class="cell" :to="{name: 'default'}" tag="div">
@@ -62,7 +71,8 @@
             Step 8
         </div>
         <div class="cellBody">
-          Ngrok
+                  <i class="fas fa-exclamation-triangle"></i>
+          <div>Ngrok</div>
         </div>
     </router-link>
     <router-link class="cell" :to="{name: 'default'}" tag="div">
@@ -70,7 +80,8 @@
             Step 9
         </div>
         <div class="cellBody">
-          Miscellaneous
+                  <i class="fas fa-exclamation-triangle"></i>
+          <div>Miscellaneous</div>
         </div>
     </router-link>
 </main>
@@ -81,13 +92,26 @@
 import DashboardHelper from './DashboardHelper.js'
 export default {
   name: 'dashboard',
+  data: () => {
+    return {
+      ssh: false,
+      installsoftware: false
+    }
+  },
   mounted: function () {
     DashboardHelper.mounted(this.$store)
+    const completedSections = Object.keys(this.$store.state.Counter.sections)
+    completedSections.forEach((elem) => {
+      this[elem] = true
+    })
+    console.log(this)
   }
 }
 </script>
 
 <style scoped>
+
+
 main {
     display:grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -155,10 +179,21 @@ main {
     padding-bottom: 30px;
 }
 
+.cellBody svg {
+    font-size: 48px;
+}
 
+.cellBody > div {
+    padding-top:10px;
+}
 
+.fa-thumbs-up {
+    color: green;
+}
 
-
-
+.fa-exclamation-triangle {
+    color: red;
+    font-size:48px;
+}
 
 </style>

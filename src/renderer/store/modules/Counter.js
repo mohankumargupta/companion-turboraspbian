@@ -1,7 +1,8 @@
 const state = {
   main: 0,
   path: '',
-  userconfig: {}
+  userconfig: {},
+  sections: {}
 }
 
 const mutations = {
@@ -16,6 +17,9 @@ const mutations = {
   },
   updateUserConfig (state, config) {
     state.userconfig = config
+  },
+  updateSections (state, section) {
+    state.sections = {...state.sections, ...section}
   }
 }
 

@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div class="save">
-              <button>Change</button>
+              <button @click="approve">Change</button>
             </div>
     </div>
 </div> 
@@ -32,6 +32,13 @@ export default {
   data: () => {
     return {
       packages: []
+    }
+  },
+  methods: {
+    approve: function () {
+      this.$store.commit('updateSections', {
+        installsoftware: true
+      })
     }
   },
   mounted: function () {
