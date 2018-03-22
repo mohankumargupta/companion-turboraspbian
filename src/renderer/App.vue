@@ -5,9 +5,9 @@
 </template>
 
 <script>
-  export default {
-    name: 'companion-turboraspbian'
-  }
+export default {
+  name: 'companion-turboraspbian'
+}
 </script>
 
 <style>

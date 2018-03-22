@@ -10,22 +10,19 @@
 </template>
 
 <script>
-import fontawesome from '@fortawesome/fontawesome'
-import faTh from '@fortawesome/fontawesome-free-solid/faTh'
-import faHome from '@fortawesome/fontawesome-free-solid/faHome'
-fontawesome.library.add(faTh)
-fontawesome.library.add(faHome)
-
 export default {
   name: 'sidebar',
   mounted: function () {
     const activeLink = document.getElementsByClassName('router-link-active')
     activeLink[0].parentElement.style.backgroundColor = '#000'
+    activeLink[0].parentElement.style.color = '#95a5a6'
+    activeLink[0].style.color = '#fff'
   },
   methods: {
     activeLink: (link) => {
       const activeLink = document.getElementsByClassName('router-link-active')
       activeLink[0].parentElement.style.backgroundColor = '#34495e'
+      activeLink[0].style.color = '#95a5a6'
       document.getElementById(link).style.backgroundColor = '#000'
     }
   }
@@ -54,6 +51,10 @@ export default {
 .sidebarContents a {
     text-decoration: none;
     color: #95a5a6;
+}
+
+.router-link-active span, .router-link-active svg {
+  color: #fff;
 }
 
 </style>
