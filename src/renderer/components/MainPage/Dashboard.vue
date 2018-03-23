@@ -101,6 +101,7 @@ export default {
   name: 'dashboard',
   data: () => {
     return {
+      firstrun: true,
       ssh: false,
       installsoftware: false,
       raspbian: false,
@@ -113,7 +114,12 @@ export default {
     }
   },
   mounted: function () {
-    DashboardHelper.mounted(this.$store)
+    console.log(this.$store.state.Counter.userconfig['RASPBIAN_APT_INSTALL'])
+    if (this.$store.state.Counter.initialised === false) {
+      console.log('firstrun')
+      DashboardHelper.mounted(this.$store)
+      this.$store.commit('setInitialised')
+    }
     const completedSections = Object.keys(this.$store.state.Counter.sections)
     completedSections.forEach((elem) => {
       this[elem] = true

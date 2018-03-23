@@ -1,10 +1,9 @@
 const state = {
   main: 0,
   path: '',
-  userconfig: {
-    'RASPBIAN_APT_INSTALL': []
-  },
-  sections: {}
+  userconfig: {},
+  sections: {},
+  initialised: false
 }
 
 const mutations = {
@@ -24,11 +23,18 @@ const mutations = {
     state.sections = {...state.sections, ...section}
   },
   updateInstallSoftware (state, info) {
-    console.log(state.userconfig)
-    console.log(info.section)
-    state.userconfig[info.section].push('a')
-    console.log(state.userconfig)
+    console.log(info)
+    let moo = []
+    info.forEach((elem) => moo.push(elem.value))
+
+    state.userconfig = {...state.userconfig,
+      'RASPBIAN_APT_INSTALL': moo
+    }
+  },
+  setInitialised (state) {
+    state.initialised = true
   }
+
 }
 
 const actions = {

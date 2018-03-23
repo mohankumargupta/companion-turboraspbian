@@ -32,40 +32,28 @@ export default {
   name: 'installsoftware',
   data: () => {
     return {
-      otherpackages: []
-    }
-  },
-  computed: {
-    packages () {
-      const boo = this.$store.state.Counter.userconfig['RASPBIAN_APT_INSTALL']
-      let moo = []
-
-      boo.forEach((elem) => {
-        moo.push({value: elem})
-      })
-
-      this.otherpackages = moo
-
-      return this.otherpackages
+      packages: []
     }
   },
   methods: {
     approve: function () {
       CommonHelper.approve(this.$store, this.$router, 'installsoftware')
-      this.$store.commit('updateInstallSoftware', {
-        section: 'RASPBIAN_APT_INSTALL',
-        packages: this.otherpackages
-      })
+      this.$store.commit('updateInstallSoftware', this.packages)
     },
     trash: function (index) {
+      console.log(index)
+      console.log(this.packages)
       this.packages.splice(index, 1)
     },
     add: function () {
-      this.otherpackages.push({value: ''})
-      console.log(this.otherpackages)
+      this.packages.push({value: ''})
+      console.log(this.packages)
     }
   },
   mounted: function () {
+    const config = this.$store.state.Counter.userconfig['RASPBIAN_APT_INSTALL']
+    console.log(config)
+    CommonHelper.mounted(config, this.packages)
   }
 }
 </script>
