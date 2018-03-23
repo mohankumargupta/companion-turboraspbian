@@ -11,9 +11,10 @@
                 </div>
                 <div>
                 <h5>Apt Package Name</h5>
-                <div v-for="aptPackage in packages">
+                <div v-for="(aptPackage, index) in packages">
                     <div>
                     <input v-model="aptPackage.value"/>
+                    <span @click="trash(index)"><i class="fas fa-trash-alt"></i></span>
                     </div>
                 </div>
                 </div>
@@ -39,6 +40,9 @@ export default {
   methods: {
     approve: function () {
       CommonHelper.approve(this.$store, this.$router, 'nodered')
+    },
+    trash: function (index) {
+      this.packages.splice(index, 1)
     }
   },
   mounted: function () {

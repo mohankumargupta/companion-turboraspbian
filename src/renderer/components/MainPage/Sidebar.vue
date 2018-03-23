@@ -3,8 +3,8 @@
     <div class="header">
     </div>
     <div class="sidebarContents">
-        <div id="dashboard" class="sidebarEntry"><router-link :to="{name: 'dashboard'}"><i class="fas fa-th"></i><span @click="activeLink('dashboard')">&nbsp;&nbsp;DASHBOARD</span></router-link></div>
-        <div id="summaryscreen" class="sidebarEntry"><router-link :to="{name: 'summaryscreen'}"><i class="fas fa-list"></i><span @click="activeLink('summaryscreen')">&nbsp;&nbsp;SUMMARY</span></router-link></div>
+        <div id="dashboard" class="sidebarEntry"><router-link :to="{name: 'dashboard'}"><span @click="activeLink('dashboard')"><i class="fas fa-th"></i>&nbsp;&nbsp;DASHBOARD</span></router-link></div>
+        <div id="summaryscreen" class="sidebarEntry"><router-link :to="{name: 'summaryscreen'}"><span @click="activeLink('summaryscreen')"><i class="fas fa-list"></i>&nbsp;&nbsp;SUMMARY</span></router-link></div>
     </div>
 </div>
 </template>

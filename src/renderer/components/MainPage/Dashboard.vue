@@ -118,7 +118,6 @@ export default {
     completedSections.forEach((elem) => {
       this[elem] = true
     })
-    console.log(this)
   }
 }
 </script>

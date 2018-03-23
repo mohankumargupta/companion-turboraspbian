@@ -1,9 +1,14 @@
 export default {
+  mounted: (userConfig, data) => {
+    userConfig.forEach((item) => {
+      data.push({ value: item })
+    })
+  },
   approve: (store, router, section) => {
     let s = {}
     s[section] = true
-    console.log(s)
     store.commit('updateSections', s)
-    router.go(-1)
+    const GO_BACK = -1
+    router.go(GO_BACK)
   }
 }

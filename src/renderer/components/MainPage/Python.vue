@@ -11,33 +11,37 @@
                 </div>
                 <div>
                   <h5>Python 2 Modules (install via apt-get)</h5>
-                  <div v-for="aptPackage in python2Apt">
+                  <div v-for="(aptPackage, index) in python2Apt">
                     <div>
                     <input v-model="aptPackage.value"/>
+                    <span @click="trash(index, 'python2Apt')"><i class="fas fa-trash-alt"></i></span>
                     </div>
                   </div>
                 </div>
                 <div>
                   <h5>Python 3 Modules (install via apt-get)</h5>
-                  <div v-for="aptPackage in python3Apt">
+                  <div v-for="(aptPackage, index) in python3Apt">
                     <div>
                     <input v-model="aptPackage.value"/>
+                    <span @click="trash(index, 'python3Apt')"><i class="fas fa-trash-alt"></i></span>
                     </div>
                   </div>
                 </div>
                 <div>
                   <h5>Python 2 Modules (install via pip)</h5>
-                  <div v-for="pipPackage in python2Pip">
+                  <div v-for="(pipPackage, index) in python2Pip">
                     <div>
                     <input v-model="pipPackage.value"/>
+                    <span @click="trash(index, 'python2Pip')"><i class="fas fa-trash-alt"></i></span>
                     </div>
                   </div>
                 </div>
                 <div>
                   <h5>Python 3 Modules (install via pip)</h5>
-                  <div v-for="pipPackage in python3Pip">
+                  <div v-for="(pipPackage, index) in python3Pip">
                     <div>
                     <input v-model="pipPackage.value"/>
+                    <span @click="trash(index, 'python3Pip')"><i class="fas fa-trash-alt"></i></span>
                     </div>
                   </div>
                 </div>
@@ -66,6 +70,9 @@ export default {
   methods: {
     approve: function () {
       CommonHelper.approve(this.$store, this.$router, 'python')
+    },
+    trash: function (index, key) {
+      this[key].splice(index, 1)
     }
   },
   mounted: function () {

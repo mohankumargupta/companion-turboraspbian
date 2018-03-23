@@ -11,9 +11,9 @@
                 </div>
                 <div>
                 <h5>Apt Package Name</h5>
-                <div v-for="aptPackage in packages">
+                <div v-for="(aptPackage, index) in packages">
                     <div>
-                    <input v-model="aptPackage.value"/>
+                    <input v-model="aptPackage.value"/><span @click="trash(index)"><i class="fas fa-trash-alt"></i></span>
                     </div>
                 </div>
                 </div>
@@ -26,7 +26,6 @@
 </template>
 
 <script>
-import ImportSoftwareHelper from './InstallSoftwareHelper.js'
 import CommonHelper from './CommonHelper.js'
 
 export default {
@@ -39,10 +38,14 @@ export default {
   methods: {
     approve: function () {
       CommonHelper.approve(this.$store, this.$router, 'installsoftware')
+    },
+    trash: function (index) {
+      this.packages.splice(index, 1)
     }
   },
   mounted: function () {
-    ImportSoftwareHelper.mounted(this.$store.state.Counter.userconfig, this.packages)
+    const config = this.$store.state.Counter.userconfig['RASPBIAN_APT_INSTALL']
+    CommonHelper.mounted(config, this.packages)
   }
 }
 </script>
