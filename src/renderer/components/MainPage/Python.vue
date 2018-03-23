@@ -7,10 +7,10 @@
             </h4>
             <div class="cardContents">
                 <div>
-                    <button>Add Package</button>
-                </div>
-                <div>
                   <h5>Python 2 Modules (install via apt-get)</h5>
+                  <div class="addmodule">
+                    <button @click="add('python2Apt')">Add Module</button>
+                  </div> 
                   <div v-for="(aptPackage, index) in python2Apt">
                     <div>
                     <input v-model="aptPackage.value"/>
@@ -20,6 +20,9 @@
                 </div>
                 <div>
                   <h5>Python 3 Modules (install via apt-get)</h5>
+                  <div class="addmodule">
+                    <button @click="add('python3Apt')">Add Module</button>
+                  </div>                  
                   <div v-for="(aptPackage, index) in python3Apt">
                     <div>
                     <input v-model="aptPackage.value"/>
@@ -29,6 +32,9 @@
                 </div>
                 <div>
                   <h5>Python 2 Modules (install via pip)</h5>
+                  <div class="addmodule">
+                    <button @click="add('python2Pip')">Add Module</button>
+                  </div> 
                   <div v-for="(pipPackage, index) in python2Pip">
                     <div>
                     <input v-model="pipPackage.value"/>
@@ -38,6 +44,9 @@
                 </div>
                 <div>
                   <h5>Python 3 Modules (install via pip)</h5>
+                  <div class="addmodule">
+                    <button @click="add('python3Pip')">Add Module</button>
+                  </div> 
                   <div v-for="(pipPackage, index) in python3Pip">
                     <div>
                     <input v-model="pipPackage.value"/>
@@ -73,6 +82,9 @@ export default {
     },
     trash: function (index, key) {
       this[key].splice(index, 1)
+    },
+    add: function (key) {
+      this[key].push('')
     }
   },
   mounted: function () {
@@ -83,7 +95,19 @@ export default {
 
 <style scoped>
 .card {
-  height: 60vw;
+  height: 80vw;
 }
 
+.addmodule {
+  padding-top: 1vw;
+  padding-bottom: 1vw;
+}
+
+h5 {
+  margin-top: 0;
+}
+
+.cardContents > div {
+  padding-bottom: 2vw;
+}
 </style>

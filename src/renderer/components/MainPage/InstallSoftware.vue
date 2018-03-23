@@ -7,7 +7,7 @@
             </h4>
             <div class="cardContents">
                 <div>
-                    <button>Add Package</button>
+                    <button @click="add">Add Package</button>
                 </div>
                 <div>
                 <h5>Apt Package Name</h5>
@@ -32,20 +32,40 @@ export default {
   name: 'installsoftware',
   data: () => {
     return {
-      packages: []
+      otherpackages: []
+    }
+  },
+  computed: {
+    packages () {
+      const boo = this.$store.state.Counter.userconfig['RASPBIAN_APT_INSTALL']
+      let moo = []
+
+      boo.forEach((elem) => {
+        moo.push({value: elem})
+      })
+
+      this.otherpackages = moo
+
+      return this.otherpackages
     }
   },
   methods: {
     approve: function () {
       CommonHelper.approve(this.$store, this.$router, 'installsoftware')
+      this.$store.commit('updateInstallSoftware', {
+        section: 'RASPBIAN_APT_INSTALL',
+        packages: this.otherpackages
+      })
     },
     trash: function (index) {
       this.packages.splice(index, 1)
+    },
+    add: function () {
+      this.otherpackages.push({value: ''})
+      console.log(this.otherpackages)
     }
   },
   mounted: function () {
-    const config = this.$store.state.Counter.userconfig['RASPBIAN_APT_INSTALL']
-    CommonHelper.mounted(config, this.packages)
   }
 }
 </script>

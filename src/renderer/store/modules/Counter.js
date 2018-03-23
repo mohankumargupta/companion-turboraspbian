@@ -1,7 +1,9 @@
 const state = {
   main: 0,
   path: '',
-  userconfig: {},
+  userconfig: {
+    'RASPBIAN_APT_INSTALL': []
+  },
   sections: {}
 }
 
@@ -20,6 +22,12 @@ const mutations = {
   },
   updateSections (state, section) {
     state.sections = {...state.sections, ...section}
+  },
+  updateInstallSoftware (state, info) {
+    console.log(state.userconfig)
+    console.log(info.section)
+    state.userconfig[info.section].push('a')
+    console.log(state.userconfig)
   }
 }
 
