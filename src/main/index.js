@@ -1,6 +1,7 @@
 'use strict'
 
-import { app, BrowserWindow, ipcMain } from 'electron'
+import { app, BrowserWindow, ipcMain, Menu } from 'electron'
+// import Bus from '../renderer/bus.js'
 
 /**
  * Set `__static` path to static files in production
@@ -25,6 +26,63 @@ function createWindow () {
     width: 1000,
     show: false
   })
+
+  const menuTemplate = [
+    {
+      label: 'File',
+      submenu: [
+        {
+          label: 'Open'
+        },
+        {
+          label: 'Save'
+        },
+        {
+          label: 'Save As...',
+          click: function () {
+            mainWindow.webContents.send('saveas')
+          }
+        },
+        {
+          label: 'Exit',
+          role: 'quit'
+        }
+      ]
+    },
+    {
+      label: 'Tasks'
+    },
+    {
+      label: 'Window',
+      role: 'windowMenu'
+    },
+    {
+      label: 'Developer',
+      submenu: [
+        {
+          label: 'Developer Tools',
+          accelerator: function () {
+            return 'Ctrl+Shift+I'
+          },
+          click: function (item, focusedWindow) {
+            if (focusedWindow) {
+              focusedWindow.toggleDevTools()
+            }
+          }
+        },
+        {
+          label: 'Reload',
+          role: 'reload'
+        },
+        {
+          label: 'Force Reload',
+          role: 'forceReload'
+        }
+      ]
+    }
+  ]
+  const menu = Menu.buildFromTemplate(menuTemplate)
+  Menu.setApplicationMenu(menu)
 
   setTimeout(() => mainWindow.maximize(), 5000)
   // mainWindow.on('ready-to-show', () => mainWindow.maximize())
@@ -60,6 +118,10 @@ function downloadRepo (arg) {
 ipcMain.on('downloadrepo', (event, arg) => {
   console.log('hit')
   downloadRepo(arg)
+})
+
+ipcMain.on('saveas', () => {
+  console.log('saveas')
 })
 
 app.on('ready', createWindow)

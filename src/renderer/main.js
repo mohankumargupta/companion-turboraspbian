@@ -37,3 +37,9 @@ new Vue({
     return h('App')
   }
 }).$mount('#app')
+
+const ipcRenderer = require('electron').ipcRenderer
+
+ipcRenderer.on('saveas', () => {
+  console.log(store)
+})
