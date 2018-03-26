@@ -41,5 +41,20 @@ new Vue({
 const ipcRenderer = require('electron').ipcRenderer
 
 ipcRenderer.on('saveas', () => {
-  console.log(store)
+  const {dialog} = require('electron').remote
+  const saveFile = dialog.showSaveDialog({
+    properties: ['openFile'],
+    filters: [
+      {
+        name: 'Raspberry Pi Settings',
+        extensions: ['rpi']
+      }]
+  })
+  if (saveFile !== undefined) {
+    const newSettings = store.state.Counter['userconfig']
+    const fs = require('fs')
+    const yaml = require('js-yaml')
+    const newSettingsYAML = yaml.safeDump(newSettings)
+    fs.writeFileSync(saveFile, newSettingsYAML)
+  }
 })

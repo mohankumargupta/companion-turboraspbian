@@ -5,16 +5,8 @@
 </template>
 
 <script>
-import Bus from './bus.js'
 export default {
-  name: 'companion-turboraspbian',
-  mounted: () => {
-    console.log('App')
-    console.log(Bus)
-    Bus.$on('saveAs', () => {
-      alert('saveAs')
-    })
-  }
+  name: 'companion-turboraspbian'
 }
 </script>
 

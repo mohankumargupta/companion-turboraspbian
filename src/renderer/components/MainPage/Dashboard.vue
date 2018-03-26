@@ -114,9 +114,9 @@ export default {
     }
   },
   mounted: function () {
-    console.log(this.$store.state.Counter.userconfig['RASPBIAN_APT_INSTALL'])
+    // console.log(this.$store.state.Counter.userconfig['RASPBIAN_APT_INSTALL'])
     if (this.$store.state.Counter.initialised === false) {
-      console.log('firstrun')
+      // console.log('firstrun')
       DashboardHelper.mounted(this.$store)
       this.$store.commit('setInitialised')
     }
@@ -129,8 +129,6 @@ export default {
 </script>
 
 <style scoped>
-
-
 main {
     display:grid;
     grid-template-columns: 1fr 1fr 1fr;
