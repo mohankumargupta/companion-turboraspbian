@@ -48,8 +48,11 @@ function save (store) {
     const path = require('path')
     const hostsFile = path.resolve(workspacePath, 'raspberrypi-ansible-master', 'hosts')
     const newHosts = store.state.Counter['hosts']
-    console.log(newHosts, hostsFile)
-    // const hosts = ini.parse(fs.readFileSync(hostsFile, 'utf-8'))
+    console.log(newHosts)
+    console.log(hostsFile)
+    const ini = require('ini')
+    const fs = require('fs')
+    fs.writeFileSync(hostsFile, ini.stringify(newHosts))
   })
 }
 

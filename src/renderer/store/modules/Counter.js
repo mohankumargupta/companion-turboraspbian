@@ -52,12 +52,14 @@ const mutations = {
     state.userconfig = newUserConfig
   },
   updateHosts (state, info) {
-    console.log(info)
-    console.log(state)
     state.hosts = info
   },
   saveHosts (state, info) {
-    console.log(info)
+    const ip = info.ip
+    const username = info.username
+    const key = Object.keys(state['hosts']['raspberrypis'])[0]
+    state['hosts']['raspberrypis'][key] = ip + ' ' + 'ansible_user=' + username
+    console.log(state['hosts'])
   },
   setInitialised (state) {
     state.initialised = true

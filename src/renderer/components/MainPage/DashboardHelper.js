@@ -17,7 +17,6 @@ export default {
         const ini = require('ini')
         const hostsFile = path.resolve(workspacePath, 'raspberrypi-ansible-master', 'hosts')
         const hosts = ini.parse(fs.readFileSync(hostsFile, 'utf-8'))
-        console.log(hosts)
         store.commit('updateHosts', hosts)
       })
     }

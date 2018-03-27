@@ -44,20 +44,13 @@ export default {
     }
   },
   mounted: function () {
+    console.log(this.$store.state.Counter)
     const keys = Object.keys(this.$store.state.Counter['hosts']['raspberrypis'])
     const values = Object.values(this.$store.state.Counter['hosts']['raspberrypis'])
     const hostname = keys[0].split(' ')[0]
     const ipaddress = values[0].split(' ')[0]
     const username = values[0].split('=')[1]
     // const password = values[0].split('=')[2]
-    console.log(hostname)
-    console.log(ipaddress)
-    console.log(username)
-    this.$store.commit('updateHosts', {
-      hostname: hostname,
-      ip: ipaddress,
-      username: username
-    })
     this.hostname = hostname
     this.ipaddress = ipaddress
     this.username = username
