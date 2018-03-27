@@ -38,7 +38,10 @@ export default {
   methods: {
     approve: function () {
       CommonHelper.approve(this.$store, this.$router, 'installsoftware')
-      this.$store.commit('updateInstallSoftware', this.packages)
+      this.$store.commit('updateList', {
+        list: this.packages,
+        key: 'RASPBIAN_APT_INSTALL'
+      })
     },
     trash: function (index) {
       console.log(index)
@@ -47,12 +50,10 @@ export default {
     },
     add: function () {
       this.packages.push({value: ''})
-      console.log(this.packages)
     }
   },
   mounted: function () {
     const config = this.$store.state.Counter.userconfig['RASPBIAN_APT_INSTALL']
-    console.log(config)
     CommonHelper.mounted(config, this.packages)
   }
 }

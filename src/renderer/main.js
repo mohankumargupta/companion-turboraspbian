@@ -52,6 +52,7 @@ ipcRenderer.on('saveas', () => {
   })
   if (saveFile !== undefined) {
     const newSettings = store.state.Counter['userconfig']
+    console.log(newSettings)
     const fs = require('fs')
     const yaml = require('js-yaml')
     const newSettingsYAML = yaml.safeDump(newSettings)

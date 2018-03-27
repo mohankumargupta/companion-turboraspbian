@@ -22,14 +22,33 @@ const mutations = {
   updateSections (state, section) {
     state.sections = {...state.sections, ...section}
   },
-  updateInstallSoftware (state, info) {
-    console.log(info)
+  updateList (state, info) {
     let moo = []
-    info.forEach((elem) => moo.push(elem.value))
-
-    state.userconfig = {...state.userconfig,
-      'RASPBIAN_APT_INSTALL': moo
-    }
+    const list = info['list']
+    const key = info['key']
+    list.forEach((elem) => moo.push(elem.value))
+    const newUserConfig = {...state.userconfig}
+    newUserConfig[key] = moo
+    console.log(newUserConfig)
+    state.userconfig = newUserConfig
+  },
+  updateValue (state, info) {
+    const key = info['key']
+    const value = info['value']
+    const newUserConfig = {...state.userconfig}
+    newUserConfig[key] = value
+    state.userconfig = newUserConfig
+  },
+  updateChoices (state, info) {
+    console.log(info)
+    const key = info['key']
+    const list = info['list']
+    console.log(list)
+    const newUserConfig = {...state.userconfig}
+    list.forEach((elem) => {
+      newUserConfig[key][elem.text] = elem.value
+    })
+    state.userconfig = newUserConfig
   },
   setInitialised (state) {
     state.initialised = true

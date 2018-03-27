@@ -40,14 +40,11 @@
                 <div v-for="raspiInterface in interfaces">
                     <div>
                     <label>{{ raspiInterface.text }}</label>
-                    <toggle-button :value="raspiInterface.value"
-                                   :labels="{
-                                     checked: '  Enabled',
-                                     unchecked: 
-                                     '  Disabled'
-                                   }"
-                                   :width=80
-                    ></toggle-button>                    
+                    <toggle-button
+                    :id="raspiInterface.text"
+                    :sync="true"
+                    :value="raspiInterface.value" :labels="true"
+                    @change="buttonToggled"/>                   
                     </div>
                 </div>
               </div>
@@ -71,17 +68,42 @@ export default {
       keyboardLayout: '',
       wifiSSID: '',
       wifiPassword: '',
-      bluetooth: false,
+      bluetooth: '',
       interfaces: []
     }
   },
   methods: {
+    buttonToggled: function (info) {
+      const key = info.srcEvent.path[1].id
+      const value = info.value
+      this.interfaces.forEach((elem, index) => {
+        if (elem.text === key) {
+          this.interfaces[index].value = value
+        }
+      })
+    },
     approve: function () {
       CommonHelper.approve(this.$store, this.$router, 'raspbian')
+      this.$store.commit('updateChoices', {
+        list: this.interfaces,
+        key: 'RASPICONFIG'
+      })
+      this.$store.commit('updateValue', {
+        key: 'RASPBIAN_KEYBOARD_LAYOUT',
+        value: this.keyboardLayout
+      })
+      this.$store.commit('updateValue', {
+        key: 'RASPBIAN_ENABLE_BLUETOOTH',
+        value: this.bluetooth
+      })
     }
   },
   mounted: function () {
     RaspbianHelper.mounted(this.$store.state.Counter.userconfig, this.interfaces)
+    this.keyboardLayout = this.$store.state.Counter.userconfig['RASPBIAN_KEYBOARD_LAYOUT']
+    this.wifiSSID = this.$store.state.Counter.userconfig['RASPBIAN_WIFI_SSID']
+    this.wifiPassword = this.$store.state.Counter.userconfig['RASPBIAN_WIFI_PASSWORD']
+    this.bluetooth = this.$store.state.Counter.userconfig['RASPBIAN_ENABLE_BLUETOOTH']
   }
 }
 </script>
