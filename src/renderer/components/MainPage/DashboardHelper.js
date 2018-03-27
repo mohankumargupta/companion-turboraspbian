@@ -14,7 +14,13 @@ export default {
         const userdatayaml = fs.readFileSync(pathToConfig, 'utf-8')
         const userconfig = yaml.safeLoad(userdatayaml)
         store.commit('updateUserConfig', userconfig)
+        const ini = require('ini')
+        const hostsFile = path.resolve(workspacePath, 'raspberrypi-ansible-master', 'hosts')
+        const hosts = ini.parse(fs.readFileSync(hostsFile, 'utf-8'))
+        console.log(hosts)
+        store.commit('updateHosts', hosts)
       })
     }
+    console.log(store)
   }
 }

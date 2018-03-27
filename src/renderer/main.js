@@ -38,6 +38,21 @@ new Vue({
   }
 }).$mount('#app')
 
+function save (store) {
+  const storage = require('electron-json-storage')
+  storage.get('workspacePath', (error, data) => {
+    if (error) {
+      return
+    }
+    const workspacePath = data.path
+    const path = require('path')
+    const hostsFile = path.resolve(workspacePath, 'raspberrypi-ansible-master', 'hosts')
+    const newHosts = store.state.Counter['hosts']
+    console.log(newHosts, hostsFile)
+    // const hosts = ini.parse(fs.readFileSync(hostsFile, 'utf-8'))
+  })
+}
+
 const ipcRenderer = require('electron').ipcRenderer
 
 ipcRenderer.on('saveas', () => {
@@ -51,6 +66,7 @@ ipcRenderer.on('saveas', () => {
       }]
   })
   if (saveFile !== undefined) {
+    save(store)
     const newSettings = store.state.Counter['userconfig']
     console.log(newSettings)
     const fs = require('fs')

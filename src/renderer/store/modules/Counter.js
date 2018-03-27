@@ -3,6 +3,7 @@ const state = {
   path: '',
   userconfig: {},
   sections: {},
+  hosts: '',
   initialised: false
 }
 
@@ -49,6 +50,14 @@ const mutations = {
       newUserConfig[key][elem.text] = elem.value
     })
     state.userconfig = newUserConfig
+  },
+  updateHosts (state, info) {
+    console.log(info)
+    console.log(state)
+    state.hosts = info
+  },
+  saveHosts (state, info) {
+    console.log(info)
   },
   setInitialised (state) {
     state.initialised = true
