@@ -12,13 +12,16 @@
                 <div v-for="container in containers">
                     <div>
                     <label>{{ container.text }}</label>
-                    <toggle-button :value="container.value"
-                                   :labels="{
-                                     checked: '  Enabled',
-                                     unchecked: 
-                                     '  Disabled'
-                                   }"
-                                   :width=80
+                    <toggle-button 
+                    :id="container.text"
+                    :value="container.value"
+                    :sync="true"
+                    :labels="{
+                      checked: '  Enabled',
+                      unchecked: '  Disabled'
+                    }"
+                    :width=80
+                    @change="buttonToggled"
                     ></toggle-button>                    
                     </div>
                 </div>
@@ -45,8 +48,22 @@ export default {
     }
   },
   methods: {
+    buttonToggled: function (info) {
+      console.log(info)
+      const key = info.srcEvent.path[1].id
+      const value = info.value
+      this.containers.forEach((elem, index) => {
+        if (elem.text === key) {
+          this.containers[index].value = value
+        }
+      })
+    },
     approve: function () {
       CommonHelper.approve(this.$store, this.$router, 'docker')
+      this.$store.commit('updateChoices', {
+        key: 'DOCKER',
+        list: this.containers
+      })
     }
   },
   mounted: function () {
