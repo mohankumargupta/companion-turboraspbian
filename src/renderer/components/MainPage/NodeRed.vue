@@ -7,7 +7,7 @@
             </h4>
             <div class="cardContents">
                 <div>
-                    <button>Add Package</button>
+                    <button @click="add('packages')">Add Package</button>
                 </div>
                 <div>
                 <h5>Apt Package Name</h5>
@@ -40,9 +40,18 @@ export default {
   methods: {
     approve: function () {
       CommonHelper.approve(this.$store, this.$router, 'nodered')
+      this.$store.commit('updateList', {
+        key: 'NODERED_MODULES',
+        list: this.packages
+      })
     },
     trash: function (index) {
       this.packages.splice(index, 1)
+    },
+    add: function (key) {
+      this[key].push({
+        value: ''
+      })
     }
   },
   mounted: function () {
@@ -52,6 +61,8 @@ export default {
 </script>
 
 <style scoped>
-
+.card {
+  height: 100vw;
+}
 
 </style>
