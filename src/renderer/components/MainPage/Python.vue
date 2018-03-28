@@ -79,12 +79,30 @@ export default {
   methods: {
     approve: function () {
       CommonHelper.approve(this.$store, this.$router, 'python')
+      this.$store.commit('updateList', {
+        key: 'PYTHON2_APT_MODULES',
+        list: this.python2Apt
+      })
+      this.$store.commit('updateList', {
+        key: 'PYTHON3_APT_MODULES',
+        list: this.python3Apt
+      })
+      this.$store.commit('updateList', {
+        key: 'PYTHON2_PIP_MODULES',
+        list: this.python2Pip
+      })
+      this.$store.commit('updateList', {
+        key: 'PYTHON3_PIP_MODULES',
+        list: this.python3Pip
+      })
     },
     trash: function (index, key) {
       this[key].splice(index, 1)
     },
     add: function (key) {
-      this[key].push('')
+      this[key].push({
+        value: ''
+      })
     }
   },
   mounted: function () {
