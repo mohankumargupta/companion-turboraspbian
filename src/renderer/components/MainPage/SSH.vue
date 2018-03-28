@@ -22,10 +22,12 @@
             <label for="passwd">Password</label>
             <input v-model="password" name="passwd" title="password" type="text" placeholder="password"/>
             </div>
-            </div>
             <div class="save">
               <button @click="approve">Approve Settings</button>
             </div>
+            </div>
+
+
     </div>
 </div> 
 </template>

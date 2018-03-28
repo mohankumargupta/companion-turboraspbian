@@ -15,4 +15,8 @@ export default {
 .contentWrapper {
     padding: 5vw;
 }
+
+.cardContents {
+    padding-bottom: 2vw;
+}
 </style>

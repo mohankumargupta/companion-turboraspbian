@@ -48,7 +48,7 @@ body {
 
 .card {
     width: 60vw;
-    height: 30vw;
+    height: 100vw;
     margin: 0 auto;
     margin-top: 5vw;
     border: 1px solid #ddd;
@@ -84,6 +84,11 @@ body {
 
 .save {
     padding-left: 3vw;
+}
+
+.choicesWrapper {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
 }
 
 </style>

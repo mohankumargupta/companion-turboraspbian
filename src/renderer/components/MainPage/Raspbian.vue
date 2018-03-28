@@ -38,13 +38,19 @@
               <div>
                 <h5>Interfaces</h5>
                 <div v-for="raspiInterface in interfaces">
+                    <div class="choicesWrapper">
+                    <div>{{ raspiInterface.text }}</div>
                     <div>
-                    <label>{{ raspiInterface.text }}</label>
                     <toggle-button
                     :id="raspiInterface.text"
                     :sync="true"
-                    :value="raspiInterface.value" :labels="true"
-                    @change="buttonToggled"/>                   
+                    :value="raspiInterface.value" :labels="{
+                                     checked: '                Enabled',
+                                     unchecked: 
+                                     '     Disabled'
+                                   }"
+                    :width="80"
+                    @change="buttonToggled"/> </div>                  
                     </div>
                 </div>
               </div>
