@@ -51,12 +51,12 @@
           <div>NodeRed</div>
         </div>
     </router-link>
-    <router-link class="cell" :to="{name: 'default'}" tag="div">
+    <router-link class="cell" :to="{name: 'networkstorage'}" tag="div">
         <div class="titleHeader titleHeader6">
             Step 6
         </div>
         <div class="cellBody">
-         <i v-if="samba" class="fas fa-thumbs-up"></i>      
+         <i v-if="networkstorage" class="fas fa-thumbs-up"></i>      
           <i v-else class="fas fa-exclamation-triangle"></i>
           <div>Network Storage</div>
         </div>
@@ -110,7 +110,8 @@ export default {
       samba: false,
       docker: false,
       ngrok: false,
-      miscellaneous: false
+      miscellaneous: false,
+      networkstorage: false
     }
   },
   mounted: function () {
@@ -122,6 +123,9 @@ export default {
     completedSections.forEach((elem) => {
       this[elem] = true
     })
+  },
+  updated: function () {
+    console.log(this.$store)
   }
 }
 </script>

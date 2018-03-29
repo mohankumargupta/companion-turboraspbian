@@ -6,11 +6,11 @@
              Install software via apt-get
             </h4>
             <div class="cardContents">
-                <div>
+                <div class="addPackageWrapper">
                     <button @click="add">Add Package</button>
                 </div>
                 <div>
-                <h5>Apt Package Name</h5>
+                <h5>Package Name</h5>
                 <div v-for="(aptPackage, index) in packages">
                     <div>
                     <input v-model="aptPackage.value"/><span @click="trash(index)"><i class="fas fa-trash-alt"></i></span>
@@ -60,6 +60,8 @@ export default {
 </script>
 
 <style scoped>
-
+.addPackageWrapper {
+  padding-bottom: 3vw;
+}
 
 </style>

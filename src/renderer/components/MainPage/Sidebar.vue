@@ -5,6 +5,7 @@
     <div class="sidebarContents">
         <div id="dashboard" class="sidebarEntry"><router-link :to="{name: 'dashboard'}"><span @click="activeLink('dashboard')"><i class="fas fa-th"></i>&nbsp;&nbsp;DASHBOARD</span></router-link></div>
         <div id="summaryscreen" class="sidebarEntry"><router-link :to="{name: 'summaryscreen'}"><span @click="activeLink('summaryscreen')"><i class="fas fa-list"></i>&nbsp;&nbsp;SUMMARY</span></router-link></div>
+        <div id="runscreen" class="sidebarEntry"><router-link :to="{name: 'runscreen'}"><span @click="activeLink('summaryscreen')"><i class="fas fa-fighter-jet"></i>&nbsp;&nbsp;RUN</span></router-link></div>
     </div>
 </div>
 </template>
