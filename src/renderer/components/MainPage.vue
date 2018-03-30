@@ -91,4 +91,12 @@ body {
     grid-template-columns: 1fr 3fr;
 }
 
+.fa-trash-alt {
+    color: red;
+}
+
+.cardContents span {
+    padding-left: 1vw;
+}
+
 </style>

@@ -35,7 +35,10 @@ function createWindow () {
           label: 'Open'
         },
         {
-          label: 'Save'
+          label: 'Save',
+          click: function () {
+            mainWindow.webContents.send('save')
+          }
         },
         {
           label: 'Save As...',

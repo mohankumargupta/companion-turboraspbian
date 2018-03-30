@@ -14,6 +14,7 @@ import faExclamationTriangle from '@fortawesome/fontawesome-free-solid/faExclama
 import faThumbsUp from '@fortawesome/fontawesome-free-solid/faThumbsUp'
 import faList from '@fortawesome/fontawesome-free-solid/faList'
 import faTrashAlt from '@fortawesome/fontawesome-free-solid/faTrashAlt'
+import faFighterJet from '@fortawesome/fontawesome-free-solid/faFighterJet'
 
 fontawesome.library.add(faTh)
 fontawesome.library.add(faHome)
@@ -21,6 +22,7 @@ fontawesome.library.add(faExclamationTriangle)
 fontawesome.library.add(faThumbsUp)
 fontawesome.library.add(faList)
 fontawesome.library.add(faTrashAlt)
+fontawesome.library.add(faFighterJet)
 
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 Vue.http = Vue.prototype.$http = axios
@@ -38,7 +40,7 @@ new Vue({
   }
 }).$mount('#app')
 
-function save (store) {
+function save (store, saveFile) {
   const storage = require('electron-json-storage')
   storage.get('workspacePath', (error, data) => {
     if (error) {
@@ -53,10 +55,25 @@ function save (store) {
     const ini = require('ini')
     const fs = require('fs')
     fs.writeFileSync(hostsFile, ini.stringify(newHosts))
+    const newSettings = store.state.Counter['userconfig']
+    console.log(newSettings)
+    const yaml = require('js-yaml')
+    const newSettingsYAML = yaml.safeDump(newSettings)
+    let newSaveFile
+    if (saveFile === undefined) {
+      newSaveFile = path.resolve(workspacePath, 'raspberrypi-ansible-master', 'group_vars', 'raspberrypis.yml')
+    } else {
+      newSaveFile = saveFile
+    }
+    fs.writeFileSync(newSaveFile, newSettingsYAML)
   })
 }
 
 const ipcRenderer = require('electron').ipcRenderer
+
+ipcRenderer.on('save', () => {
+  save(store, undefined)
+})
 
 ipcRenderer.on('saveas', () => {
   const {dialog} = require('electron').remote
@@ -69,12 +86,6 @@ ipcRenderer.on('saveas', () => {
       }]
   })
   if (saveFile !== undefined) {
-    save(store)
-    const newSettings = store.state.Counter['userconfig']
-    console.log(newSettings)
-    const fs = require('fs')
-    const yaml = require('js-yaml')
-    const newSettingsYAML = yaml.safeDump(newSettings)
-    fs.writeFileSync(saveFile, newSettingsYAML)
+    save(store, saveFile)
   }
 })

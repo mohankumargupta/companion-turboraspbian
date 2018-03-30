@@ -16,6 +16,9 @@ import Docker from '@/components/MainPage/Docker'
 import Welcome from '@/components/PreLaunch/Welcome'
 import CheckShell from '@/components/PreLaunch/CheckShell'
 import Summary from '@/components/MainPage/Summary'
+import NetworkStorage from '@/components/MainPage/NetworkStorage'
+import Run from '@/components/MainPage/Run'
+import RunBash from '@/components/MainPage/RunBash'
 
 const storage = require('electron-json-storage')
 const path = require('path')
@@ -127,10 +130,34 @@ const routes = new Router({
           }
         },
         {
+          path: '/network-storage',
+          name: 'networkstorage',
+          components: {
+            default: NetworkStorage,
+            sidebar: Sidebar
+          }
+        },
+        {
           path: '/summary',
           name: 'summaryscreen',
           components: {
             default: Summary,
+            sidebar: Sidebar
+          }
+        },
+        {
+          path: '/run',
+          name: 'runscreen',
+          components: {
+            default: Run,
+            sidebar: Sidebar
+          }
+        },
+        {
+          path: '/runbash',
+          name: 'runbash',
+          components: {
+            default: RunBash,
             sidebar: Sidebar
           }
         }
