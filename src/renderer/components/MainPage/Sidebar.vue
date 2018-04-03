@@ -5,19 +5,20 @@
     <div class="sidebarContents">
         <div id="dashboard" class="sidebarEntry"><router-link :to="{name: 'dashboard'}"><span @click="activeLink('dashboard')"><i class="fas fa-th"></i>&nbsp;&nbsp;DASHBOARD</span></router-link></div>
         <div id="summaryscreen" class="sidebarEntry"><router-link :to="{name: 'summaryscreen'}"><span @click="activeLink('summaryscreen')"><i class="fas fa-list"></i>&nbsp;&nbsp;SUMMARY</span></router-link></div>
-        <div id="runscreen" class="sidebarEntry"><router-link :to="{name: 'runscreen'}"><span @click="activeLink('summaryscreen')"><i class="fas fa-fighter-jet"></i>&nbsp;&nbsp;RUN</span></router-link></div>
+        <div id="runscreen" class="sidebarEntry"><router-link :to="{name: 'runscreen'}"><span @click="activeLink('runscreen')"><i class="fas fa-fighter-jet"></i>&nbsp;&nbsp;RUN</span></router-link></div>
     </div>
 </div>
 </template>
 
 <script>
+import SidebarHelper from './SidebarHelper'
 export default {
   name: 'sidebar',
   mounted: function () {
-    const activeLink = document.getElementsByClassName('router-link-active')
-    activeLink[0].parentElement.style.backgroundColor = '#000'
-    activeLink[0].parentElement.style.color = '#95a5a6'
-    activeLink[0].style.color = '#fff'
+    SidebarHelper.mounted()
+  },
+  updated: () => {
+    console.log('updated')
   },
   methods: {
     activeLink: (link) => {

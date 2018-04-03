@@ -6,16 +6,12 @@
 </template>
 
 <script>
+import SidebarHelper from './SidebarHelper'
 export default {
   name: 'summaryscreen',
   methods: {
     activeLink: (link) => {
-      // const routeName = this.$route.name
-      console.log(link)
-      const activeLink = document.getElementsByClassName('router-link-active')
-      activeLink[0].parentElement.style.backgroundColor = '#34495e'
-      activeLink[0].parentElement.style.color = '#95a5a6'
-      document.getElementById(link).style.backgroundColor = '#000'
+      SidebarHelper.activeLink(link)
     }
   }
 }

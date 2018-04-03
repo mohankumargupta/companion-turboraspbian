@@ -1,6 +1,6 @@
 <template>
 <div class="sshWrapper">
-    <router-link class="linkDashboard" :to="{name: 'dashboard'}">Back to Dashboard</router-link>
+    <router-link :to="{name: 'dashboard'}"><span @click="activeLink('dashboard')">Back to Dashboard</span></router-link>
     <div>
             <h4>
              RUN
@@ -23,7 +23,7 @@
             <input v-model="password" name="passwd" title="password" type="text" placeholder="password"/>
             </div>
             <div class="save">
-              <button @click="run">Test</button>            
+              <button @click="test">Test</button>            
               <button @click="run">Run</button>
             </div>
             </div>
@@ -34,8 +34,28 @@
 </template>
 
 <script>
+import SidebarHelper from './SidebarHelper'
 export default {
-  name: 'runsummary'
+  name: 'runsummary',
+  data: () => {
+    return {
+      hostname: '',
+      ipaddress: '',
+      username: '',
+      password: ''
+    }
+  },
+  methods: {
+    activeLink: (link) => {
+      SidebarHelper.activeLink(link)
+    },
+    test: () => {
+
+    },
+    run: () => {
+
+    }
+  }
 }
 </script>
 

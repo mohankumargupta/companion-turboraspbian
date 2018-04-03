@@ -168,10 +168,10 @@ const routes = new Router({
 
 routes.beforeEach((to, from, next) => {
   if (to.name === 'main-page') {
-    if (preLaunch()) {
-      next({ name: 'welcome' })
-    } else {
+    if (doesWorkspacePathExist()) {
       next({ name: 'dashboard' })
+    } else {
+      next({ name: 'welcome' })
     }
   } else {
     next()
@@ -181,15 +181,15 @@ routes.beforeEach((to, from, next) => {
   }, 100)
 })
 
-function preLaunch () {
+function doesWorkspacePathExist () {
   const workspacePathStorage = path.resolve(storage.getDataPath(), 'workspacePath.json')
 
   let isWorkspacePathStorage
   try {
     fs.statSync(workspacePathStorage)
-    isWorkspacePathStorage = false
-  } catch (err) {
     isWorkspacePathStorage = true
+  } catch (err) {
+    isWorkspacePathStorage = false
   }
 
   return isWorkspacePathStorage
