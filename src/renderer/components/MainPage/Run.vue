@@ -24,7 +24,7 @@
             </div>
             <div class="save">
               <button @click="test">Test</button>            
-              <button @click="run">Run</button>
+<router-link :to="{name: 'runbash'}" tag="button"><span>Run</span></router-link>
             </div>
             </div>
 
