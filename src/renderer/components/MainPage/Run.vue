@@ -22,9 +22,14 @@
             <label for="passwd">Password</label>
             <input v-model="password" name="passwd" title="password" type="text" placeholder="password"/>
             </div>
+
+            <div>
+            <label>SUDO Password for Ubuntu</label>
+            <input v-model="sudopassword" type="text" width="80"/>
+            </div>
             <div class="save">
-              <button @click="test">Test</button>            
-<router-link :to="{name: 'runbash'}" tag="button"><span>Run</span></router-link>
+              <button @click="run">Test</button>            
+<router-link :to="{name: 'runbash'}" tag="button" @click="run"><span>Run</span></router-link>
             </div>
             </div>
 
@@ -42,18 +47,17 @@ export default {
       hostname: '',
       ipaddress: '',
       username: '',
-      password: ''
+      password: '',
+      sudopassword: ''
     }
   },
   methods: {
     activeLink: (link) => {
       SidebarHelper.activeLink(link)
     },
-    test: () => {
-
-    },
-    run: () => {
-
+    run: function () {
+      console.log('run')
+      this.$store.commit('setSudoPassword', this.sudopassword)
     }
   }
 }

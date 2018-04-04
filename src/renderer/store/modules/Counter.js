@@ -4,7 +4,8 @@ const state = {
   userconfig: {},
   sections: {},
   hosts: '',
-  initialised: false
+  initialised: false,
+  sudopassword: ''
 }
 
 const mutations = {
@@ -63,6 +64,9 @@ const mutations = {
   },
   setInitialised (state) {
     state.initialised = true
+  },
+  setSudoPassword (state, password) {
+    state.sudopassword = password
   }
 
 }

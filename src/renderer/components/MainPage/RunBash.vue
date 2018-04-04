@@ -1,17 +1,19 @@
 <template>
 <div>
     <router-link :to="{name: 'dashboard'}">Back to Dashboard</router-link>
-    <div>
+    <div class="xtermWrapper">
         <div id="xterm"></div>
     </div>
 </div> 
 </template>
 
 <script>
+
 export default {
   name: 'runbash',
   mounted: function () {
     // const os = require('os')
+    const sudopassword = this.$store.state.Counter.sudopassword
     const path = require('path')
     const workspacePath = this.$store.state.Counter.path
     let scriptPath = path.resolve(workspacePath, 'raspberrypi-ansible-master')
@@ -19,6 +21,9 @@ export default {
     scriptPath = scriptPath.replace('C:', '/mnt/c')
     scriptPath = scriptPath.replace(/\\/g, '/')
     const Terminal = require('xterm').Terminal
+    // const fit = require('xterm/lib/addons/fit/fit')
+    // console.log(fit)
+    // Terminal.applyAddon(fit)
 
     // const shell = process.env[os.platform() === 'win32' ? 'COMSPEC' : 'SHELL'];
     const shell = 'C:\\Windows\\System32\\bash.exe'
@@ -37,6 +42,8 @@ export default {
     })
     xterm.open(document.getElementById('xterm'))
 
+    // xterm.fit()
+
     // Setup communication between xterm.js and node-pty
     xterm.on('data', (data) => {
       ptyProcess.write(data)
@@ -47,11 +54,14 @@ export default {
 
     setTimeout(() => {
       ptyProcess.write('cd "' + scriptPath + '"\r')
+      ptyProcess.write('make setup SUDOPASSWORD=' + sudopassword + '\r')
     }, 1000)
   }
 }
 </script>
 
 <style scoped>
-
+.xtermWrapper {
+  height: 20px;
+}
 </style>
