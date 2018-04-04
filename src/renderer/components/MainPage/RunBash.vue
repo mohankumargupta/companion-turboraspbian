@@ -12,7 +12,12 @@ export default {
   name: 'runbash',
   mounted: function () {
     // const os = require('os')
+    const path = require('path')
+    const workspacePath = this.$store.state.Counter.path
+    let scriptPath = path.resolve(workspacePath, 'raspberrypi-ansible-master')
     const pty = require('node-pty')
+    scriptPath = scriptPath.replace('C:', '/mnt/c')
+    scriptPath = scriptPath.replace(/\\/g, '/')
     const Terminal = require('xterm').Terminal
 
     // const shell = process.env[os.platform() === 'win32' ? 'COMSPEC' : 'SHELL'];
@@ -40,7 +45,9 @@ export default {
       xterm.write(data)
     })
 
-    setTimeout(() => ptyProcess.write('ls\r'), 10000)
+    setTimeout(() => {
+      ptyProcess.write('cd "' + scriptPath + '"\r')
+    }, 1000)
   }
 }
 </script>
