@@ -3,8 +3,8 @@ import DockerHelper from '@/components/MainPage/DockerHelper'
 test('replenish docker containers', () => {
   const config = {
     'DOCKER': {
-        'web': true,
-        'grafana': false
+      'web': true,
+      'grafana': false
     }
   }
   let dockerContainers = []
@@ -21,4 +21,3 @@ test('replenish docker containers', () => {
   DockerHelper.mounted(config, dockerContainers)
   expect(dockerContainers).toEqual(expected)
 })
-

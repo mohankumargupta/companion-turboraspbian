@@ -24,7 +24,8 @@ function createWindow () {
     height: 563,
     useContentSize: true,
     width: 1000,
-    show: false
+    show: false,
+    title: 'TurboPi'
   })
 
   const menuTemplate = [

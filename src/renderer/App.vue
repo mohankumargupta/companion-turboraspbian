@@ -11,6 +11,8 @@ export default {
 </script>
 
 <style>
+@import '../../node_modules/notosans-fontface/css/notosans-fontface.css';
+
   /* App-wide CSS */
 .contentWrapper {
     padding: 5vw;
@@ -18,5 +20,9 @@ export default {
 
 .cardContents {
     padding-bottom: 2vw;
+}
+
+body {
+    font-family: "Noto Sans"
 }
 </style>
