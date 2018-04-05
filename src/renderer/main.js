@@ -15,6 +15,8 @@ import faThumbsUp from '@fortawesome/fontawesome-free-solid/faThumbsUp'
 import faList from '@fortawesome/fontawesome-free-solid/faList'
 import faTrashAlt from '@fortawesome/fontawesome-free-solid/faTrashAlt'
 import faFighterJet from '@fortawesome/fontawesome-free-solid/faFighterJet'
+import faCheckCircle from '@fortawesome/fontawesome-free-solid/faCheckCircle'
+import faTimesCircle from '@fortawesome/fontawesome-free-solid/faTimesCircle'
 
 fontawesome.library.add(faTh)
 fontawesome.library.add(faHome)
@@ -23,6 +25,8 @@ fontawesome.library.add(faThumbsUp)
 fontawesome.library.add(faList)
 fontawesome.library.add(faTrashAlt)
 fontawesome.library.add(faFighterJet)
+fontawesome.library.add(faCheckCircle)
+fontawesome.library.add(faTimesCircle)
 
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 Vue.http = Vue.prototype.$http = axios
