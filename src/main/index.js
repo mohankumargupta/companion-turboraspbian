@@ -17,6 +17,8 @@ const winURL = process.env.NODE_ENV === 'development'
   : `file://${__dirname}/index.html`
 
 function createWindow () {
+  const path = require('path')
+  const iconfile = path.resolve(__static, 'icon.ico')
   /**
    * Initial window options
    */
@@ -25,7 +27,8 @@ function createWindow () {
     useContentSize: true,
     width: 1000,
     show: false,
-    title: 'TurboPi'
+    title: 'TurboPi',
+    icon: iconfile
   })
 
   const menuTemplate = [
