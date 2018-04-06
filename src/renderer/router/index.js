@@ -4,7 +4,7 @@ import MainPage from '@/components/MainPage'
 import DefaultContent from '@/components/MainPage/DefaultContent'
 import Sidebar from '@/components/MainPage/Sidebar'
 import SidebarEmpty from '@/components/MainPage/SidebarEmpty'
-import Workspace from '@/components/PreLaunch/Workspace'
+import SetupProfile from '@/components/PreLaunch/SetupProfile'
 import DownloadRepo from '@/components/PreLaunch/DownloadRepo'
 import Dashboard from '@/components/MainPage/Dashboard'
 import SSH from '@/components/MainPage/SSH'
@@ -42,10 +42,10 @@ const routes = new Router({
           }
         },
         {
-          path: '/first-run',
-          name: 'first-run',
+          path: '/setup-profile',
+          name: 'setup-profile',
           components: {
-            default: Workspace,
+            default: SetupProfile,
             sidebar: SidebarEmpty
           }
         },

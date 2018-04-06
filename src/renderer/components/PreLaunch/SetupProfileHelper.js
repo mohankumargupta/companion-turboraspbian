@@ -1,17 +1,18 @@
 import store from '../../store'
 
 export default {
-  openFolderDialog: (store) => {
+  openFolderDialog: (store, profileDirectory) => {
     let path
     const dialog = require('electron').remote.dialog
-    const storage = require('electron-json-storage')
-    path = dialog.showOpenDialog({properties: ['openDirectory']})
+    path = dialog.showOpenDialog({
+      properties: ['openDirectory'],
+      defaultPath: profileDirectory
+    })
     if (path !== undefined) {
       path = path[0]
-      storage.set('workspacePath', {path: path})
-      store.commit('updatePath', path)
-      document.querySelector('[name=workspacepath]').value = path
+      return path
     }
+    return undefined
   },
   updateWorkspacePath: () => {
     const newPath = document.querySelector('[name=workspacepath]').value

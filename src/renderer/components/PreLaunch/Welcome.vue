@@ -19,7 +19,7 @@
     </div>
     <div class="nextScreen">
         <div>
-        <router-link :to="{name: 'first-run'}">Next</router-link>
+        <router-link tag="button" :to="{name: 'setup-profile'}">Next</router-link>
         </div>
     </div>
 </div> 

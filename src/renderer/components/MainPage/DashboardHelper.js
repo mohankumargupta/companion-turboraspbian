@@ -21,6 +21,5 @@ export default {
         store.commit('updatePath', workspacePath)
       })
     }
-    console.log(store)
   }
 }
