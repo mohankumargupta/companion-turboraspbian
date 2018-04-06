@@ -1,6 +1,6 @@
 <template>
-<div>
-    CHECK SHELL
+<div class="contentWrapper">
+    <setup-wizard screen="launch"></setup-wizard>
     <div>
     <router-link :to="{name: 'dashboard'}">Next</router-link>
     </div>
@@ -8,8 +8,10 @@
 </template>
 
 <script>
+import SetupWizard from './SetupWizard'
 export default {
-  name: 'check-shell'
+  name: 'launch-options',
+  components: { SetupWizard }
 }
 </script>
 

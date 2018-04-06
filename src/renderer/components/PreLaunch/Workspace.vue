@@ -1,5 +1,6 @@
 <template>
     <div class="contentWrapper">
+      <setup-wizard screen="profile"></setup-wizard>
     <div>
         <div class="workspace">
             <label for="workspacepath" class="workspacelabel">Workspace Location</label>
@@ -11,9 +12,11 @@
     </div>
 </template>
 <script>
+import SetupWizard from './SetupWizard'
 import WorkspaceMount from './WorkspaceMount.js'
 export default {
   name: 'workspace',
+  components: { SetupWizard },
   methods: {
     updateWorkspacePath: () => {
       WorkspaceMount.updateWorkspacePath()

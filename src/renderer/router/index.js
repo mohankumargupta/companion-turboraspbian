@@ -14,7 +14,7 @@ import Python from '@/components/MainPage/Python'
 import NodeRed from '@/components/MainPage/NodeRed'
 import Docker from '@/components/MainPage/Docker'
 import Welcome from '@/components/PreLaunch/Welcome'
-import CheckShell from '@/components/PreLaunch/CheckShell'
+import LaunchOptions from '@/components/PreLaunch/LaunchOptions'
 import Summary from '@/components/MainPage/Summary'
 import NetworkStorage from '@/components/MainPage/NetworkStorage'
 import Run from '@/components/MainPage/Run'
@@ -58,10 +58,10 @@ const routes = new Router({
           }
         },
         {
-          path: '/checkshell',
-          name: 'check-shell',
+          path: '/launch-options',
+          name: 'launch-options',
           components: {
-            default: CheckShell,
+            default: LaunchOptions,
             sidebar: SidebarEmpty
           }
         },
