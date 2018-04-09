@@ -5,6 +5,9 @@ import App from './App'
 import router from './router'
 import store from './store'
 
+import Element from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+
 import ToggleButton from 'vue-js-toggle-button'
 
 import fontawesome from '@fortawesome/fontawesome'
@@ -33,6 +36,7 @@ Vue.http = Vue.prototype.$http = axios
 Vue.config.productionTip = false
 
 Vue.use(ToggleButton)
+Vue.use(Element)
 
 /* eslint-disable no-new */
 new Vue({

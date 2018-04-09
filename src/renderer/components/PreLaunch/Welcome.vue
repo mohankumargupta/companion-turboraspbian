@@ -25,7 +25,7 @@
     </div>
     <div class="nextScreen">
         <div>
-        <router-link tag="button" :to="{name: 'setup-profile'}">Next</router-link>
+        <router-link :to="{name: 'setup-profile'}"><el-button type="primary">Next</el-button></router-link>
         </div>
     </div>
 </div> 
