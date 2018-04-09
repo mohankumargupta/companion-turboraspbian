@@ -9,11 +9,17 @@
     </div>
     <div>
         <ul>
-            <li v-if="isonline" class="internet">Internet Access</li>
-            <li v-else class="internet">No Internet Access</li>
-            <li v-if="bashshell" class="internet">Bash Shell</li>
-            <li v-else class="internet">
-              No Bash Shell
+            <li>
+            <i class="online fas fa-times-circle"></i>
+            <span v-if="isonline" class="internet">Internet Access</span>
+            <span v-else class="internet">No Internet Access</span>
+            </li>
+            <li>
+            <i class="bash fas fa-times-circle"></i>
+            <span v-if="bashshell" class="internet">Bash Shell</span>
+            <span id="nobashshell" v-else class="internet">
+              No Bash Shell <a href="#nobashshell" @click="downloadMsys2">Click here to download and install MSys2</a>
+            </span>
             </li>      
         </ul>
     </div>
@@ -36,15 +42,27 @@ export default {
       bashshell: false
     }
   },
-  created: function () {
+  mounted: function () {
     this.isConnected().then(reachable => {
       this.isonline = reachable
+      if (reachable) {
+        this.$el.querySelector('.online').setAttribute('class', 'online fas fa-check-circle')
+      } else {
+        this.$el.querySelector('.online').setAttribute('class', 'online fas fa-times-circle')
+      }
     })
     if (this.hasShell()) {
       this.bashshell = true
+      this.$el.querySelector('.bash').setAttribute('class', 'fas fa-check-circle')
+    } else {
+
     }
   },
   methods: {
+    downloadMsys2: () => {
+      const { shell } = require('electron').remote
+      shell.openExternal('https://www.msys2.org/')
+    },
     isConnected: () => {
       const isReachable = require('is-reachable')
       return isReachable('example.com')
@@ -54,7 +72,9 @@ export default {
       if (process.platform === 'win32') {
         const fs = require('fs')
         const bashExists = fs.existsSync('C:\\Windows\\System32\\bash.exe')
-        return bashExists
+        const msys32Exists = fs.existsSync('C:\\msys32\\usr\\bin\\bash.exe')
+        const msys64Exists = fs.existsSync('C:\\msys64\\usr\\bin\\bash.exe')
+        return bashExists || msys32Exists || msys64Exists
       }
       return false
     }
@@ -93,4 +113,7 @@ li {
     font-size: 2rem;
 }
 
+ul {
+  padding-left: 0;
+}
 </style>

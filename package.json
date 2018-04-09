@@ -47,11 +47,27 @@
     "files": [
       "dist/electron",
       "node_modules/",
-      "package.json"
+      "package.json",
+      "static/icon.ico",
+      "icon.ico",
+      "installer.nsh"
     ],
+    "win": {
+      "icon": "build/icon.ico",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        }
+      ]
+    },
     "nsis": {
       "oneClick": false,
-      "allowToChangeInstallationDirectory": true
+      "allowToChangeInstallationDirectory": true,
+      "perMachine": true
     }
   },
   "devDependencies": {
