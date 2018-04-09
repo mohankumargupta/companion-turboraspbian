@@ -17,7 +17,7 @@
             </div>
         </div>
     </div>
-    <router-link :to="{ name: 'download-repo' }" tag="button"><span @click="next">Next</span></router-link>
+    <router-link :to="{ name: 'download-repo' }"><el-button type="primary"><span @click="next">Next</span></el-button></router-link>
     </div>
 </template>
 <script>

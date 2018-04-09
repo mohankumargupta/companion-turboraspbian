@@ -6,8 +6,7 @@
             Step 1
         </div>
         <div class="cellBody">
-          <i v-if="ssh" class="fas fa-thumbs-up"></i>      
-          <i v-else class="fas fa-exclamation-triangle"></i>
+          <i class="fas fa-terminal"></i>
           <div>SSH</div>
         </div>
     </router-link>

@@ -125,6 +125,7 @@ function downloadRepo (arg) {
 ipcMain.on('downloadrepo', (event, arg) => {
   console.log('hit')
   downloadRepo(arg)
+  event.sender.send('downloadrepocomplete')
 })
 
 ipcMain.on('saveas', () => {
