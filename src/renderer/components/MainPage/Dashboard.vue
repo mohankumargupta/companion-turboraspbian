@@ -80,7 +80,7 @@
           <div>Ngrok</div>
         </div>
     </router-link>
-    <router-link class="cell" :to="{name: 'default'}" tag="div">
+    <router-link class="cell" :to="{name: 'miscellaneous'}" tag="div">
         <div class="titleHeader titleHeader9">
             Step 9
         </div>

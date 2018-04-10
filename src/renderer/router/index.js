@@ -19,6 +19,7 @@ import Summary from '@/components/MainPage/Summary'
 import NetworkStorage from '@/components/MainPage/NetworkStorage'
 import Run from '@/components/MainPage/Run'
 import RunBash from '@/components/MainPage/RunBash'
+import Miscellaneous from '@/components/MainPage/Miscellaneous'
 
 const storage = require('electron-json-storage')
 const path = require('path')
@@ -134,6 +135,14 @@ const routes = new Router({
           name: 'networkstorage',
           components: {
             default: NetworkStorage,
+            sidebar: Sidebar
+          }
+        },
+        {
+          path: '/miscellaneous',
+          name: 'miscellaneous',
+          components: {
+            default: Miscellaneous,
             sidebar: Sidebar
           }
         },
