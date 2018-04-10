@@ -13,13 +13,14 @@ export default {
   name: 'runbash',
   mounted: function () {
     // const os = require('os')
-    const sudopassword = this.$store.state.Counter.sudopassword
+    // const sudopassword = this.$store.state.Counter.sudopassword
     const path = require('path')
     const workspacePath = this.$store.state.Counter.path
     let scriptPath = path.resolve(workspacePath, 'raspberrypi-ansible-master')
     const pty = require('node-pty')
     scriptPath = scriptPath.replace('C:', '/mnt/c')
     scriptPath = scriptPath.replace(/\\/g, '/')
+    console.log(scriptPath)
     const Terminal = require('xterm').Terminal
     // const fit = require('xterm/lib/addons/fit/fit')
     // console.log(fit)
@@ -53,8 +54,9 @@ export default {
     })
 
     setTimeout(() => {
-      ptyProcess.write('cd "' + scriptPath + '"\r')
-      ptyProcess.write('make setup SUDOPASSWORD=' + sudopassword + '\r')
+      ptyProcess.write('pwd\r')
+      // ptyProcess.write('cd "' + scriptPath + '"\r')
+      // ptyProcess.write('make setup SUDOPASSWORD=' + sudopassword + '\r')
     }, 1000)
   }
 }

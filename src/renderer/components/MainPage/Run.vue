@@ -5,32 +5,20 @@
             <h4>
              RUN
             </h4>
-            <div>
-            <div class="inputWrapper">
-            <label for="hostname">Hostname</label>
-            <input v-model="hostname" name="hostname" title="hostname" type="text" />
-            </div>            
-            <div class="inputWrapper">
-            <label for="ipaddress">Pi IP Address</label>
-            <input v-model="ipaddress" name="ipaddress" title="Pi IP Address" type="text" placeholder="Pi IP Address"/>
-            </div>
-            <div class="inputWrapper">
-            <label for="username">Username</label>
-            <input v-model="username" name="username" title="username" type="text" placeholder="username"/>
-            </div>
-            <div class="inputWrapper">
-            <label for="passwd">Password</label>
-            <input v-model="password" name="passwd" title="password" type="text" placeholder="password"/>
-            </div>
-
-            <div>
+            <div class="sshWrapper">
+              <div>
+               <ssh-common showApproveSettings="false"></ssh-common>
+            <div class="sudo">
             <label>SUDO Password for Ubuntu</label>
             <input v-model="sudopassword" type="text" width="80"/>
-            </div>
+            </div>               
             <div class="save">
               <button @click="run">Test</button>            
 <router-link :to="{name: 'runbash'}" tag="button" @click="run"><span>Run</span></router-link>
             </div>
+              </div>
+
+
             </div>
 
 
@@ -40,8 +28,10 @@
 
 <script>
 import SidebarHelper from './SidebarHelper'
+import SSHCommon from './SSHCommon'
 export default {
   name: 'runsummary',
+  components: { 'ssh-common': SSHCommon },
   data: () => {
     return {
       hostname: '',
@@ -64,5 +54,7 @@ export default {
 </script>
 
 <style scoped>
-
+.sudo {
+  padding-left: 3vw;
+}
 </style>

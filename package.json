@@ -97,6 +97,7 @@
     "electron-builder": "^20.8.1",
     "electron-debug": "^1.4.0",
     "electron-devtools-installer": "^2.2.0",
+    "electron-rebuild": "^1.7.3",
     "electron-winstaller": "^2.6.4",
     "electron-wix-msi": "^1.3.0",
     "eslint": "^4.4.1",
