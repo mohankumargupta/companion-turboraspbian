@@ -64,7 +64,6 @@
 </template>
 
 <script>
-import RaspbianHelper from './RaspbianHelper.js'
 import CommonHelper from './CommonHelper.js'
 
 export default {
@@ -105,7 +104,7 @@ export default {
     }
   },
   mounted: function () {
-    RaspbianHelper.mounted(this.$store.state.Counter.userconfig, this.interfaces)
+    CommonHelper.mountChoices(this.$store.state.Counter.userconfig, this.interfaces, 'RASPICONFIG')
     this.keyboardLayout = this.$store.state.Counter.userconfig['RASPBIAN_KEYBOARD_LAYOUT']
     this.wifiSSID = this.$store.state.Counter.userconfig['RASPBIAN_WIFI_SSID']
     this.wifiPassword = this.$store.state.Counter.userconfig['RASPBIAN_WIFI_PASSWORD']

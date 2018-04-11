@@ -30,7 +30,6 @@
 
 <script>
 import CommonHelper from './CommonHelper.js'
-import MiscellaneousHelper from './MiscellaneousHelper.js'
 export default {
   name: 'miscellaneous',
   data: () => {
@@ -39,7 +38,7 @@ export default {
     }
   },
   mounted: function () {
-    MiscellaneousHelper.mounted(this.$store.state.Counter.userconfig, this.softwareList)
+    CommonHelper.mountChoices(this.$store.state.Counter.userconfig, this.softwareList, 'MISCELLANEOUS')
   },
   methods: {
     buttonToggled: function (info) {

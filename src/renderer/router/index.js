@@ -20,6 +20,7 @@ import NetworkStorage from '@/components/MainPage/NetworkStorage'
 import Run from '@/components/MainPage/Run'
 import RunBash from '@/components/MainPage/RunBash'
 import Miscellaneous from '@/components/MainPage/Miscellaneous'
+import Ngrok from '@/components/MainPage/Ngrok'
 
 const storage = require('electron-json-storage')
 const path = require('path')
@@ -119,6 +120,14 @@ const routes = new Router({
           name: 'docker',
           components: {
             default: Docker,
+            sidebar: Sidebar
+          }
+        },
+        {
+          path: '/ngrok',
+          name: 'ngrok',
+          components: {
+            default: Ngrok,
             sidebar: Sidebar
           }
         },

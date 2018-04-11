@@ -70,7 +70,7 @@
           <div>Docker</div>
         </div>
     </router-link>
-    <router-link class="cell" :to="{name: 'default'}" tag="div">
+    <router-link class="cell" :to="{name: 'ngrok'}" tag="div">
         <div class="titleHeader titleHeader8">
             Step 8
         </div>

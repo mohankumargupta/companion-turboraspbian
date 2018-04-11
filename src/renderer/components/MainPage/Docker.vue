@@ -36,7 +36,6 @@
 </template>
 
 <script>
-import DockerHelper from './DockerHelper.js'
 import CommonHelper from './CommonHelper.js'
 
 export default {
@@ -67,7 +66,7 @@ export default {
     }
   },
   mounted: function () {
-    DockerHelper.mounted(this.$store.state.Counter.userconfig, this.containers)
+    CommonHelper.mountChoices(this.$store.state.Counter.userconfig, this.containers, 'DOCKER')
   }
 }
 </script>

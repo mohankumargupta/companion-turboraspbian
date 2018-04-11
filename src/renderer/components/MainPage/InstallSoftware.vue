@@ -53,8 +53,7 @@ export default {
     }
   },
   mounted: function () {
-    const config = this.$store.state.Counter.userconfig['RASPBIAN_APT_INSTALL']
-    CommonHelper.mounted(config, this.packages)
+    CommonHelper.mountList(this.$store.state.Counter.userconfig, this.packages, 'RASPBIAN_APT_INSTALL')
   }
 }
 </script>
