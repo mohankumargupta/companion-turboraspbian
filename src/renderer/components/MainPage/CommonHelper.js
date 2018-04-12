@@ -1,11 +1,4 @@
 export default {
-  /*
-  mounted: (userConfig, data) => {
-    userConfig.forEach((item) => {
-      data.push({ value: item })
-    })
-  },
-  */
   mountList: (config, list, key) => {
     const aptPackages = config[key]
     aptPackages.forEach((aptPackage) => {
