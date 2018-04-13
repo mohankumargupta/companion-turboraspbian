@@ -5,7 +5,7 @@
     <div class="welcome">
      <p>This is a first-time wizard.</p>
      <p> Before we begin, let me check a few
-        pre-requisites.</p>
+        prerequisites.</p>
     </div>
     <div>
         <ul>
@@ -23,10 +23,19 @@
             </li>      
         </ul>
     </div>
-    <div class="nextScreen">
+
+    <div v-if="prereqSatisfied" class="nextScreen">
         <div>
         <router-link :to="{name: 'setup-profile'}"><el-button type="primary">Next</el-button></router-link>
         </div>
+    </div>
+    <div v-else class="nextScreen">
+      <div class="errorMessage">
+     Oh oh! One of the prequisites has not been met. Try again.
+      </div>
+      <div>
+        <el-button type="primary" @click="reload">Retry</el-button>
+      </div>
     </div>
 </div> 
 </template>
@@ -36,6 +45,11 @@ import SetupWizard from './SetupWizard'
 export default {
   name: 'welcome',
   components: { SetupWizard },
+  computed: {
+    prereqSatisfied: function () {
+      return this.isonline && this.bashshell
+    }
+  },
   data: () => {
     return {
       isonline: false,
@@ -59,6 +73,9 @@ export default {
     }
   },
   methods: {
+    reload: function () {
+      require('electron').remote.getCurrentWindow().reload()
+    },
     downloadMsys2: () => {
       const { shell } = require('electron').remote
       shell.openExternal('https://www.msys2.org/')
@@ -115,5 +132,10 @@ li {
 
 ul {
   padding-left: 0;
+}
+
+.errorMessage {
+  padding-bottom: 3vw;
+  color: red;
 }
 </style>
