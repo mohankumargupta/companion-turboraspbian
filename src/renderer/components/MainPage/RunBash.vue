@@ -27,8 +27,11 @@ export default {
     // Terminal.applyAddon(fit)
 
     // const shell = process.env[os.platform() === 'win32' ? 'COMSPEC' : 'SHELL'];
-    const shell = 'C:\\Windows\\System32\\bash.exe'
-    const ptyProcess = pty.spawn(shell, [], {
+    // const shell = 'C:\\Windows\\System32\\bash.exe'
+    // const shellArgs = ''
+    const shell = 'C:\\msys64\\usr\\bin\\bash.exe'
+    const shellArgs = '--login'
+    const ptyProcess = pty.spawn(shell, [shellArgs], {
       name: 'xterm-color',
       cols: 80,
       rows: 30,
@@ -39,7 +42,7 @@ export default {
     // Initialize xterm.js and attach it to the DOM
     const xterm = new Terminal({
       cursorBlink: false,
-      disableStdin: true
+      disableStdin: false
     })
     xterm.open(document.getElementById('xterm'))
 
@@ -54,7 +57,11 @@ export default {
     })
 
     setTimeout(() => {
-      ptyProcess.write('pwd\r')
+      ptyProcess.write('pacman -Su --noconfirm\r')
+      ptyProcess.write('pacman -S python3 make gcc libffi libffi-devel openssl-devel openssh base-devel  --noconfirm --needed\r')
+      ptyProcess.write('curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py\r')
+      ptyProcess.write('python3 get-pip.py\r')
+      ptyProcess.write('LIBSODIUM_MAKE_ARGS=-j4 CFLAGS="-I/usr/include/libffi/include -Ofast" python3 -m pip install ansible\r')
       // ptyProcess.write('cd "' + scriptPath + '"\r')
       // ptyProcess.write('make setup SUDOPASSWORD=' + sudopassword + '\r')
     }, 1000)
@@ -63,7 +70,11 @@ export default {
 </script>
 
 <style scoped>
+ 
 .xtermWrapper {
-  height: 20px;
+
+}
+.xterm-helpers {
+  display: none !important;  
 }
 </style>

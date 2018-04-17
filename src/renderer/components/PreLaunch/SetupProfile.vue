@@ -62,7 +62,7 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style>
 input {
   width: 200px;
 }

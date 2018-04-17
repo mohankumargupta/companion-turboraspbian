@@ -47,15 +47,12 @@
       "output": "build"
     },
     "files": [
-      "dist/electron",
-      "node_modules/",
+      "dist/electron/**/*",
+      "node_modules/**/*",
       "package.json",
-      "static/icon.ico",
-      "icon.ico",
       "installer.nsh"
     ],
     "win": {
-      "icon": "build/icon.ico",
       "target": [
         {
           "target": "nsis",
