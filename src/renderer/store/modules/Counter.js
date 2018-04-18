@@ -5,7 +5,8 @@ const state = {
   sections: {},
   hosts: '',
   initialised: false,
-  sudopassword: ''
+  sudopassword: '',
+  shell: ''
 }
 
 const mutations = {
@@ -14,6 +15,9 @@ const mutations = {
   },
   INCREMENT_MAIN_COUNTER (state) {
     state.main++
+  },
+  setShell (state, shell) {
+    state.shell = shell
   },
   updatePath (state, path) {
     state.path = path

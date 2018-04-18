@@ -53,7 +53,8 @@ export default {
   data: () => {
     return {
       isonline: false,
-      bashshell: false
+      bashshell: false,
+      shellName: ''
     }
   },
   mounted: function () {
@@ -84,14 +85,26 @@ export default {
       const isReachable = require('is-reachable')
       return isReachable('example.com')
     },
-    hasShell: () => {
+    hasShell: function () {
       const process = require('process')
       if (process.platform === 'win32') {
         const fs = require('fs')
-        const bashExists = fs.existsSync('C:\\Windows\\System32\\bash.exe')
-        const msys32Exists = fs.existsSync('C:\\msys32\\usr\\bin\\bash.exe')
         const msys64Exists = fs.existsSync('C:\\msys64\\usr\\bin\\bash.exe')
-        return bashExists || msys32Exists || msys64Exists
+        const msys32Exists = fs.existsSync('C:\\msys32\\usr\\bin\\bash.exe')
+        const bashWinExists = fs.existsSync('C:\\Windows\\System32\\bash.exe')
+
+        let shell
+
+        if (msys64Exists) {
+          shell = 'msys64'
+        } else if (msys32Exists) {
+          shell = 'msys32'
+        } else if (bashWinExists) {
+          shell = 'bashWin'
+        }
+
+        this.$store.commit('setShell', shell)
+        return bashWinExists || msys32Exists || msys64Exists
       }
       return false
     }

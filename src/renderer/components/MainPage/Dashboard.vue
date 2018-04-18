@@ -113,7 +113,31 @@ export default {
       networkstorage: false
     }
   },
+  methods: {
+    setShell: function () {
+      const process = require('process')
+      if (process.platform === 'win32') {
+        const fs = require('fs')
+        const msys64Exists = fs.existsSync('C:\\msys64\\usr\\bin\\bash.exe')
+        const msys32Exists = fs.existsSync('C:\\msys32\\usr\\bin\\bash.exe')
+        const bashWinExists = fs.existsSync('C:\\Windows\\System32\\bash.exe')
+
+        let shell
+
+        if (msys64Exists) {
+          shell = 'msys64'
+        } else if (msys32Exists) {
+          shell = 'msys32'
+        } else if (bashWinExists) {
+          shell = 'bashWin'
+        }
+
+        this.$store.commit('setShell', shell)
+      }
+    }
+  },
   mounted: function () {
+    this.setShell()
     if (this.$store.state.Counter.initialised === false) {
       DashboardHelper.mounted(this.$store)
       this.$store.commit('setInitialised')

@@ -18,19 +18,32 @@ export default {
     const workspacePath = this.$store.state.Counter.path
     let scriptPath = path.resolve(workspacePath, 'raspberrypi-ansible-master')
     const pty = require('node-pty')
-    scriptPath = scriptPath.replace('C:', '/mnt/c')
-    scriptPath = scriptPath.replace(/\\/g, '/')
-    console.log(scriptPath)
+
     const Terminal = require('xterm').Terminal
     // const fit = require('xterm/lib/addons/fit/fit')
     // console.log(fit)
     // Terminal.applyAddon(fit)
 
-    // const shell = process.env[os.platform() === 'win32' ? 'COMSPEC' : 'SHELL'];
-    // const shell = 'C:\\Windows\\System32\\bash.exe'
-    // const shellArgs = ''
-    const shell = 'C:\\msys64\\usr\\bin\\bash.exe'
-    const shellArgs = '--login'
+    const sh = this.$store.state.Counter.shell
+
+    let shell
+    let shellArgs
+    let setupScript
+
+    if (sh === 'msys64') {
+      shell = 'C:\\msys64\\usr\\bin\\bash.exe'
+      shellArgs = '--login'
+      scriptPath = scriptPath.replace(/\\/g, '/').replace('C:', '/c')
+
+      console.log(scriptPath)
+      setupScript = scriptPath + '/setup-msys64.sh'
+      console.log(setupScript)
+    } else if (sh === 'bashWin') {
+      shell = 'C:\\Windows\\System32\\bash.exe'
+      shellArgs = ''
+    }
+
+    // const shell = process.env[os.platform() === 'win32' ? 'COMSPEC' : 'SHELL']
     const ptyProcess = pty.spawn(shell, [shellArgs], {
       name: 'xterm-color',
       cols: 80,
@@ -57,14 +70,10 @@ export default {
     })
 
     setTimeout(() => {
-      ptyProcess.write('pacman -Su --noconfirm\r')
-      ptyProcess.write('pacman -S python3 make gcc libffi libffi-devel openssl-devel openssh base-devel  --noconfirm --needed\r')
-      ptyProcess.write('curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py\r')
-      ptyProcess.write('python3 get-pip.py\r')
-      ptyProcess.write('LIBSODIUM_MAKE_ARGS=-j4 CFLAGS="-I/usr/include/libffi/include -Ofast" python3 -m pip install ansible\r')
+      ptyProcess.write('bash ' + setupScript + '\r')
       // ptyProcess.write('cd "' + scriptPath + '"\r')
       // ptyProcess.write('make setup SUDOPASSWORD=' + sudopassword + '\r')
-    }, 1000)
+    }, 100)
   }
 }
 </script>
