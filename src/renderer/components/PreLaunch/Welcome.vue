@@ -58,24 +58,27 @@ export default {
     }
   },
   mounted: function () {
-    this.isConnected().then(reachable => {
-      this.isonline = reachable
-      if (reachable) {
-        this.$el.querySelector('.online').setAttribute('class', 'online fas fa-check-circle')
-      } else {
-        this.$el.querySelector('.online').setAttribute('class', 'online fas fa-times-circle')
-      }
-    })
-    if (this.hasShell()) {
-      this.bashshell = true
-      this.$el.querySelector('.bash').setAttribute('class', 'fas fa-check-circle')
-    } else {
-
-    }
+    setTimeout(() => { this.reload() }, 0)
   },
   methods: {
     reload: function () {
-      require('electron').remote.getCurrentWindow().reload()
+      const shellIcon = document.querySelectorAll('[data-fa-i2svg]')[1].dataset
+      if (this.hasShell()) {
+        this.bashshell = true
+        shellIcon.icon = 'check-circle'
+      } else {
+        this.bashshell = false
+        shellIcon.icon = 'times-circle'
+      }
+      this.isConnected().then(reachable => {
+        this.isonline = reachable
+        const onlineIcon = document.querySelectorAll('[data-fa-i2svg]')[0].dataset
+        if (reachable) {
+          onlineIcon.icon = 'check-circle'
+        } else {
+          onlineIcon.icon = 'times-circle'
+        }
+      })
     },
     downloadMsys2: () => {
       const { shell } = require('electron').remote
