@@ -16,15 +16,16 @@ export default {
       exec: 'C:\\Windows\\System32\\bash.exe'
     }
   ],
-  getInstalledShells: () => {
+  getInstalledShells: function () {
     const process = require('process')
     const fs = require('fs')
-    let shells
-    if (process.platform === 'win32') {
-      shells = this.shells.filter((elem) => {
-        return elem.platform === 'win32' && fs.existsSync(shellInfo.exec)
-      })
-    }
-    return shells  
+    const currentOS = process.platform
+    const shells = this.shells.filter((shellInfo) => {
+      return shellInfo.platform === currentOS && fs.existsSync(shellInfo.exec)
+    })
+    return shells
+  },
+  hasShell: function () {
+    return this.getInstalledShells().length > 0
   }
 }

@@ -31,7 +31,7 @@
     </div>
     <div v-else class="nextScreen">
       <div class="errorMessage">
-     Oh oh! One of the prequisites has not been met. Try again.
+     Oh no! The prerequisites have not been satisfied.<br><br>Try again and hit Retry.
       </div>
       <div>
         <el-button type="primary" @click="reload">Retry</el-button>
@@ -42,6 +42,7 @@
 
 <script>
 import SetupWizard from './SetupWizard'
+import Shells from '@/shells.config'
 export default {
   name: 'welcome',
   components: { SetupWizard },
@@ -62,22 +63,11 @@ export default {
   },
   methods: {
     reload: function () {
-      const shellIcon = document.querySelectorAll('[data-fa-i2svg]')[1].dataset
-      if (this.hasShell()) {
-        this.bashshell = true
-        shellIcon.icon = 'check-circle'
-      } else {
-        this.bashshell = false
-        shellIcon.icon = 'times-circle'
-      }
+      this.bashshell = this.hasShell()
+      this.changeIcon(document.querySelectorAll('[data-fa-i2svg]')[1], this.bashshell)
       this.isConnected().then(reachable => {
         this.isonline = reachable
-        const onlineIcon = document.querySelectorAll('[data-fa-i2svg]')[0].dataset
-        if (reachable) {
-          onlineIcon.icon = 'check-circle'
-        } else {
-          onlineIcon.icon = 'times-circle'
-        }
+        this.changeIcon(document.querySelectorAll('[data-fa-i2svg]')[0], this.isonline)
       })
     },
     downloadMsys2: () => {
@@ -88,28 +78,12 @@ export default {
       const isReachable = require('is-reachable')
       return isReachable('example.com')
     },
+    changeIcon: function (doc, tick) {
+      const newState = tick ? 'check-circle' : 'times-circle'
+      doc.dataset.icon = newState
+    },
     hasShell: function () {
-      const process = require('process')
-      if (process.platform === 'win32') {
-        const fs = require('fs')
-        const msys64Exists = fs.existsSync('C:\\msys64\\usr\\bin\\bash.exe')
-        const msys32Exists = fs.existsSync('C:\\msys32\\usr\\bin\\bash.exe')
-        const bashWinExists = fs.existsSync('C:\\Windows\\System32\\bash.exe')
-
-        let shell
-
-        if (msys64Exists) {
-          shell = 'msys64'
-        } else if (msys32Exists) {
-          shell = 'msys32'
-        } else if (bashWinExists) {
-          shell = 'bashWin'
-        }
-
-        this.$store.commit('setShell', shell)
-        return bashWinExists || msys32Exists || msys64Exists
-      }
-      return false
+      return Shells.hasShell()
     }
   }
 }
