@@ -59,7 +59,7 @@ export default {
     }
   },
   mounted: function () {
-    setTimeout(() => { this.reload() }, 0)
+    setTimeout(() => { this.reload() }, 3000)
   },
   methods: {
     reload: function () {

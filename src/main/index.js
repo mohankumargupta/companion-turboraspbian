@@ -28,7 +28,8 @@ function createWindow () {
     width: 1000,
     show: false,
     title: 'TurboPi',
-    icon: iconfile
+    icon: iconfile,
+    webPreferences: {webSecurity: false}
   })
 
   const menuTemplate = [
@@ -100,7 +101,7 @@ function createWindow () {
   })
 }
 
-function downloadRepo (arg) {
+function downloadRepo (arg, event) {
   const axios = require('axios')
   const path = require('path')
   const fs = require('fs')
@@ -119,13 +120,14 @@ function downloadRepo (arg) {
     console.log(outputFilename)
     fs.createReadStream(outputFilename).pipe(unzip.Extract({ path: arg }))
     console.log('unzipping done')
+    event.sender.send('downloadrepocomplete')
   })
 }
 
 ipcMain.on('downloadrepo', (event, arg) => {
   console.log('hit')
-  downloadRepo(arg)
-  event.sender.send('downloadrepocomplete')
+  downloadRepo(arg, event)
+  // event.sender.send('downloadrepocomplete')
 })
 
 ipcMain.on('saveas', () => {
