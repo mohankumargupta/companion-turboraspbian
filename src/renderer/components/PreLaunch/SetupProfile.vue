@@ -17,7 +17,9 @@
             </div>
         </div>
     </div>
-  <el-button type="primary"><span @click="nextStep">Next</span></el-button>
+  <div>  
+    <el-button type="primary"><span @click="nextStep">Next</span></el-button>
+  </div>
     </div>
 </template>
 <script>
