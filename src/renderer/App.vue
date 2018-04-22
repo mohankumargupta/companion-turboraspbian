@@ -12,6 +12,7 @@ export default {
 
 <style>
 @import '../../node_modules/notosans-fontface/css/notosans-fontface.css';
+@import '../../node_modules/xterm/lib/xterm.css';
 
   /* App-wide CSS */
 .contentWrapper {
