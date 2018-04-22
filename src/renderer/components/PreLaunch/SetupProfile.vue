@@ -17,7 +17,7 @@
             </div>
         </div>
     </div>
-    <router-link :to="{ name: 'download-repo' }"><el-button type="primary"><span @click="nextStep">Next</span></el-button></router-link>
+  <el-button type="primary"><span @click="nextStep">Next</span></el-button>
     </div>
 </template>
 <script>
@@ -49,6 +49,7 @@ export default {
       const storage = require('electron-json-storage')
       storage.set('workspacePath', {path: profileLocation})
       this.$store.commit('updatePath', profileLocation)
+      this.$router.push('download-repo')
     },
     updateWorkspacePath: () => {
       SetupProfileHelper.updateWorkspacePath()

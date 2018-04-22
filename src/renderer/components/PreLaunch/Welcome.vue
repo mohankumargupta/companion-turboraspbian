@@ -10,17 +10,13 @@
     <div>
         <ul>
             <li>
-            <i class="online fas fa-times-circle"></i>
-            <span v-if="isonline" class="internet">Internet Access</span>
-            <span v-else class="internet">No Internet Access</span>
+              <font-awesome-icon :icon="getIcon('online')"/>
+               <span>Internet Access</span>
             </li>
             <li>
-            <i class="bash fas fa-times-circle"></i>
-            <span v-if="bashshell" class="internet">Bash Shell</span>
-            <span id="nobashshell" v-else class="internet">
-              No Bash Shell <a href="#nobashshell" @click="downloadMsys2">Click here to download and install MSys2</a>
-            </span>
-            </li>      
+              <font-awesome-icon :icon="getIcon('shell')"/>
+               <span>Linux Shell</span>
+            </li>     
         </ul>
     </div>
 
@@ -34,41 +30,46 @@
      Oh no! The prerequisites have not been satisfied.<br><br>Try again and hit Retry.
       </div>
       <div>
-        <el-button type="primary" @click="reload">Retry</el-button>
+        <el-button type="primary" @click="retry">Retry</el-button>
       </div>
     </div>
 </div> 
 </template>
 
 <script>
+import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 import SetupWizard from './SetupWizard'
 import Shells from '@/shells.config'
 export default {
   name: 'welcome',
-  components: { SetupWizard },
+  components: { SetupWizard, FontAwesomeIcon },
   computed: {
     prereqSatisfied: function () {
-      return this.isonline && this.bashshell
+      return this.online && this.shell
     }
   },
   data: () => {
     return {
-      isonline: false,
-      bashshell: false,
-      shellName: ''
+      online: false,
+      shell: false
     }
   },
   mounted: function () {
-    setTimeout(() => { this.reload() }, 3000)
+    this.retry()
   },
   methods: {
-    reload: function () {
-      this.bashshell = this.hasShell()
-      this.changeIcon(document.querySelectorAll('[data-fa-i2svg]')[1], this.bashshell)
-      this.isConnected().then(reachable => {
-        this.isonline = reachable
-        this.changeIcon(document.querySelectorAll('[data-fa-i2svg]')[0], this.isonline)
-      })
+    getIcon: function (item) {
+      const status = (item === 'online') ? this.online : this.shell
+      if (status) {
+        return 'check-circle'
+      } else {
+        return 'times-circle'
+      }
+    },
+    retry: function () {
+      this.shell = this.hasShell()
+      this.isConnected().then(reachable => { this.online = reachable }
+      )
     },
     downloadMsys2: () => {
       const { shell } = require('electron').remote
