@@ -2,18 +2,29 @@ export default {
   shells: [
     {
       name: 'msys64',
+      family: 'msys2',
       platform: 'win32',
-      exec: 'C:\\msys64\\usr\\bin\\bash.exe'
+      exec: 'C:\\msys64\\usr\\bin\\bash.exe',
+      args: ['--login'],
+      c: '/c',
+      setup: 'bash setup-msys64.sh'
     },
     {
       name: 'msys32',
+      family: 'msys2',
       platform: 'win32',
-      exec: 'C:\\msys32\\usr\\bin\\bash.exe'
+      exec: 'C:\\msys32\\usr\\bin\\bash.exe',
+      args: ['--login'],
+      c: '/c',
+      setup: 'bash setup-msys32.sh'
     },
     {
       name: 'bashWin',
       platform: 'win32',
-      exec: 'C:\\Windows\\System32\\bash.exe'
+      exec: 'C:\\Windows\\System32\\bash.exe',
+      args: ['--login'],
+      setup: 'lxrun /setdefaultuser root',
+      c: '/mnt/c'
     }
   ],
   getInstalledShells: function () {
@@ -27,5 +38,12 @@ export default {
   },
   hasShell: function () {
     return this.getInstalledShells().length > 0
+  },
+  preferredShell: function () {
+    if (this.hasShell()) {
+      return this.getInstalledShells()[0]
+    }
+
+    return undefined
   }
 }
