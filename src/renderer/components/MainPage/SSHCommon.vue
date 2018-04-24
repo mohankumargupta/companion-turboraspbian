@@ -55,7 +55,7 @@ export default {
     const values = Object.values(this.$store.state.Counter['hosts']['raspberrypis'])
     const hostname = keys[0].split(' ')[0]
     const ipaddress = values[0].split(' ')[0]
-    const username = values[0].split('=')[1]
+    const username = values[0].split('=')[1].split(' ')[0]
     // const password = values[0].split('=')[2]
     this.hostname = hostname
     this.ipaddress = ipaddress

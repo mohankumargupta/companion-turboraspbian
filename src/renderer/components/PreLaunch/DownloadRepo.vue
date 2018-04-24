@@ -41,7 +41,8 @@ export default {
     downloadRepo: function () {
       const path = require('path')
       const fs = require('fs')
-      const workspacePath = this.$store.state.Counter.path
+      // const workspacePath = this.$store.state.Counter.path
+      const workspacePath = this.$store.getters.getPath
       console.log(workspacePath)
       const filename = workspacePath + path.sep + 'master.zip'
       console.log(filename)
