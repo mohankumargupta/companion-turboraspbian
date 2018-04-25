@@ -15,7 +15,11 @@
             </li>
             <li>
               <font-awesome-icon :icon="getIcon('shell')"/>
-               <span>Linux Shell</span>
+            <span v-if="shell" class="internet">Linux Shell</span>
+            <span id="nobashshell" v-else class="internet">
+              No Linux Shell <a href="#nobashshell" @click="downloadMsys2">Click here to download and install MSys2</a>
+            </span>
+</span>
             </li>     
         </ul>
     </div>

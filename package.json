@@ -21,7 +21,8 @@
     "test": "npm run unit && npm run e2e",
     "unit": "karma start test/unit/karma.conf.js",
     "postinstall": "npm run lint:fix",
-    "postinstallbuilder": ".\\node_modules\\.bin\\electron-builder install-app-deps --arch ia32"
+    "postinstalllinter": "npm run lint:fix",
+    "postinstallBuilder": ".\\node_modules\\.bin\\electron-builder install-app-deps --arch ia32"
   },
   "dependencies": {
     "@fortawesome/fontawesome": "^1.1.4",

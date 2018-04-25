@@ -21,6 +21,7 @@ import faFighterJet from '@fortawesome/fontawesome-free-solid/faFighterJet'
 import faCheckCircle from '@fortawesome/fontawesome-free-solid/faCheckCircle'
 import faTimesCircle from '@fortawesome/fontawesome-free-solid/faTimesCircle'
 import faTerminal from '@fortawesome/fontawesome-free-solid/faTerminal'
+import faCogs from '@fortawesome/fontawesome-free-solid/faCogs'
 
 fontawesome.library.add(faTh)
 fontawesome.library.add(faHome)
@@ -32,6 +33,7 @@ fontawesome.library.add(faFighterJet)
 fontawesome.library.add(faCheckCircle)
 fontawesome.library.add(faTimesCircle)
 fontawesome.library.add(faTerminal)
+fontawesome.library.add(faCogs)
 
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 Vue.http = Vue.prototype.$http = axios
