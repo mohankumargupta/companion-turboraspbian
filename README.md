@@ -17,7 +17,13 @@ You will find desktop app in the Releases section. Available for Windows 10 and 
 
 ### Screenshots
 
+### Building TurboPi
+```
+yarn
+yarn build
+```
 
-
+Before running yarn build 
+Open package.json and change script postInstallerBuilder to postInstall
 
 
