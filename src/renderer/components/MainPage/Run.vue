@@ -7,11 +7,7 @@
             </h4>
             <div class="sshWrapper">
               <div>
-               <ssh-common showApproveSettings="false"></ssh-common>
-            <div class="sudo">
-            <label>SUDO Password for Ubuntu</label>
-            <input v-model="sudopassword" type="text" width="80"/>
-            </div>               
+               <ssh-common showApproveSettings="false"></ssh-common>               
             <div class="save">
               <button @click="run">Test</button>            
 <router-link :to="{name: 'runbash'}" tag="button" @click="run"><span>Run</span></router-link>
