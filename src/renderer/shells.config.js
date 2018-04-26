@@ -7,7 +7,7 @@ export default {
       exec: 'C:\\msys64\\usr\\bin\\bash.exe',
       args: ['--login'],
       c: '/c',
-      setup: 'bash setup-msys.sh'
+      setup: 'bash setup-msys64.sh'
     },
     {
       name: 'msys32',
@@ -16,7 +16,7 @@ export default {
       exec: 'C:\\msys32\\usr\\bin\\bash.exe',
       args: ['--login'],
       c: '/c',
-      setup: 'bash setup-msys.sh'
+      setup: 'bash setup-msys32.sh'
     },
     {
       name: 'bashWin',
