@@ -176,7 +176,7 @@ const routes = new Router({
           name: 'runbash',
           components: {
             default: RunBash,
-            sidebar: Sidebar
+            sidebar: SidebarEmpty
           }
         }
       ]
