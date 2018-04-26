@@ -17,6 +17,13 @@ You will find desktop app in the Releases section. Available for Windows 10 and 
 
 ### Screenshots
 
+### Developing TurboPi
+```
+yarn
+yarn dev
+```
+Also, because there is a native dependency (nodepty), if you dev after you build, you make need to run .\node_modules\.bin\electron-rebuild.cmd
+
 ### Building TurboPi
 ```
 yarn

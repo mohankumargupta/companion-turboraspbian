@@ -54,6 +54,7 @@ export default {
     setTimeout(() => {
       ptyProcess.write('cd "' + scriptPath + '"\r')
       ptyProcess.write(shellInfo.setup + '\r')
+      ptyProcess.write('pwd\r')
       // ptyProcess.write('make setup SUDOPASSWORD=' + sudopassword + '\r')
     }, 100)
   }
